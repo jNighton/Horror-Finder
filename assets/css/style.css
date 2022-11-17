@@ -5,7 +5,7 @@
 }
 
 p {
-    color: #fff;
+    color: rgb(200, 17, 17);
 }
 /* search bar styling */
 .container{
@@ -45,3 +45,14 @@ form .fa-search{
     color: #777;
 }
 /*  */
+
+.movie-section{
+    display: flex;
+    justify-content: center;
+}
+
+.service-btn{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
