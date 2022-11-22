@@ -13,6 +13,9 @@ var iconPrimeEl = document.querySelector("#icon-prime");
 var iconHBOEl = document.querySelector("#icon-HBO");
 
 var drinkCardEl = document.querySelector("#drink-card");
+
+
+
 // var streamingServices = {
 
 // }
@@ -57,10 +60,16 @@ for every streaming service
 
 
 function getCocktailDB(){
-    var queryUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=bloody_mary";
+    var cocktails = ["bloody_mary", "bloody_maria", "bleeding_surgeon", "zombie", "shark_attack", "vampiro", "berry_deadly", "death_in_the_afternoon", "hot_chocolate_to_die_for", "bruised_heart"];
+
+    var random = Math.floor(Math.random() * cocktails.length);
+    console.log(random, cocktails[random]);
+
+    var queryUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + cocktails[random];
     var drinkThumbNail = document.createElement("img");
     var drinkName = document.createElement("h3");
-
+    var drinkIngredients = document.createElement("li");
+    var drinkInstructions = document.createElement("p");
 
     fetch(queryUrl)
         .then(function (response){
@@ -76,16 +85,15 @@ function getCocktailDB(){
             drinkThumbNail.setAttribute("src", drinkImg);
             // drinkThumnail.setAttribute("class", 100pix)
             drinkName.textContent = cocktailData.drinks[0].strDrink;
+            drinkIngredients = cocktailData.drinks[0].strIngredient1;
+            drinkInstructions = cocktailData.drinks[0].strInstructions;
 
             drinkCardEl.append(drinkThumbNail);
             drinkCardEl.append(drinkName);
+            drinkCardEl.append(drinkIngredients);
+            drinkCardEl.append(drinkInstructions);
         })
 
 
 
 }
-
-var cocktails = ["bloody_mary", "bloody_maria", "bleeding_surgeon", "zombie", "shark_attack", "vampiro", "berry_deadly", "death_in_the_afternoon", "hot_chocolate_to_die_for", "bruised_heart"];
-
-var random = Math.floor(Math.random() * cocktails.length);
-console.log(random, cocktails[random]);
