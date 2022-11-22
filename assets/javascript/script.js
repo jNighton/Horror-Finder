@@ -23,7 +23,7 @@ var iconHBOEl = document.querySelector("#icon-HBO");
 submitEl.addEventListener("click", function(event){
     event.preventDefault();
     console.log("u working bb?");
-    var movie = movieEl.value; 
+    // var movie = movieEl.value; 
     getMovieAPI(movie);
     getCocktailDB();
 })
@@ -72,3 +72,8 @@ function getCocktailDB(){
 
 
 }
+
+var cocktails = ["bloody_mary", "bloody_maria", "bleeding_surgeon", "zombie", "shark_attack", "vampiro", "berry_deadly", "death_in_the_afternoon", "hot_chocolate_to_die_for", "bruised_heart"];
+
+var random = Math.floor(Math.random() * cocktails.length);
+console.log(random, cocktails[random]);
