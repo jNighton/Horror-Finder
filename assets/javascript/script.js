@@ -1,4 +1,4 @@
-// var requestMDBapi =
+
 // var requestMotNapi =
 var submitEl = document.querySelector("#submit");
 var movieEl = document.querySelector("#movie");
@@ -11,24 +11,38 @@ var iconNetflixEl = document.querySelector("#icon-netflix");
 var iconHuluEl = document.querySelector("#icon-hulu");
 var iconPrimeEl = document.querySelector("#icon-prime");
 var iconHBOEl = document.querySelector("#icon-HBO");
+var movie = '';
 
 var drinkCardEl = document.querySelector("#drink-card");
 // var streamingServices = {
-
-// }
-
-submitEl.addEventListener("click", function(event){
-    event.preventDefault();
-
-    var movie = movieEl.textContent; 
-
-    getMovieAPI(movie);
-    getCocktailDB();
-})
-
-
-function getMovieAPI(movie){
-/*populate movie variables with api data
+    
+    // }
+    
+    submitEl.addEventListener("click", function(event){
+        event.preventDefault();
+        
+        movie = $('#movie').val().trim()
+        console.log(movie) 
+        
+        getMovieAPI(movie);
+        getCocktailDB();
+    })
+    
+    
+    function getMovieAPI(movie){
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '54664c79a4msh5e441cee8ee88b1p10830cjsn8417ae33858b',
+                'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+            }
+        };
+        
+        fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en', options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err)); 
+        /*populate movie variables with api data
 
 
 for every streaming service
