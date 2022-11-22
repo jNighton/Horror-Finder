@@ -11,19 +11,17 @@ var iconNetflixEl = document.querySelector("#icon-netflix");
 var iconHuluEl = document.querySelector("#icon-hulu");
 var iconPrimeEl = document.querySelector("#icon-prime");
 var iconHBOEl = document.querySelector("#icon-HBO");
+
+var drinkCardEl = document.querySelector("#drink-card");
 // var streamingServices = {
 
 // }
 
-
-
-
-
-
 submitEl.addEventListener("click", function(event){
     event.preventDefault();
-    console.log("u working bb?");
-    // var movie = movieEl.value; 
+
+    var movie = movieEl.textContent; 
+
     getMovieAPI(movie);
     getCocktailDB();
 })
@@ -59,16 +57,30 @@ for every streaming service
 
 
 function getCocktailDB(){
-    var queryUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita";
+    var queryUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=bloody_mary";
+    var drinkThumbNail = document.createElement("img");
+    var drinkName = document.createElement("h3");
+
 
     fetch(queryUrl)
         .then(function (response){
-            console.log("working?");
             return response.json();
         })
         .then(function (cocktailData){
             console.log(cocktailData);
+
+            var drinkImg = cocktailData.drinks[0].strDrinkThumb;
+
+            console.log(cocktailData.drinks[0].strImageSource);
+
+            drinkThumbNail.setAttribute("src", drinkImg);
+            // drinkThumnail.setAttribute("class", 100pix)
+            drinkName.textContent = cocktailData.drinks[0].strDrink;
+
+            drinkCardEl.append(drinkThumbNail);
+            drinkCardEl.append(drinkName);
         })
+
 
 
 }
