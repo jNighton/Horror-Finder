@@ -19,7 +19,9 @@ var drinkCardEl = document.querySelector("#drink-card");
 
 submitEl.addEventListener("click", function(event){
     event.preventDefault();
+
     var movie = movieEl.textContent; 
+
     getMovieAPI(movie);
     getCocktailDB();
 })
@@ -82,3 +84,8 @@ function getCocktailDB(){
 
 
 }
+
+var cocktails = ["bloody_mary", "bloody_maria", "bleeding_surgeon", "zombie", "shark_attack", "vampiro", "berry_deadly", "death_in_the_afternoon", "hot_chocolate_to_die_for", "bruised_heart"];
+
+var random = Math.floor(Math.random() * cocktails.length);
+console.log(random, cocktails[random]);
