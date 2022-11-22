@@ -13,11 +13,11 @@ p {
 /* search bar styling */
 .container{
     width: 100%;
-
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 form {
     background: #fff;
     width: 500px;
@@ -25,11 +25,13 @@ form {
     display: flex;
     border-radius: 40px;
 }
+
 form input{
     flex: 1;
     border: none;
     outline: none;
 }
+
 form button{
     background: rgb(171, 11, 11);
     padding: 10px 50px;
@@ -58,13 +60,29 @@ form .fa-search{
     justify-content: center;
     margin: 0;
 }
+.service-btn button{
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    border: 0px;
+}
+.service-btn image {
+    
+}
 .logo {
 
     justify-content: center;
 }
 
+
 .movie-card {
     font-size: medium;
+    background-color: rgba(0,0,0,.6);
+    max-width: 100%;
+    max-height: 20vh;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #movie-title {
