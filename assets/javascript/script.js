@@ -11,19 +11,20 @@ var iconNetflixEl = document.querySelector("#icon-netflix");
 var iconHuluEl = document.querySelector("#icon-hulu");
 var iconPrimeEl = document.querySelector("#icon-prime");
 var iconHBOEl = document.querySelector("#icon-HBO");
+
+var drinkCardEl = document.querySelector("#drink-card");
+
+
+
 // var streamingServices = {
 
 // }
 
-
-
-
-
-
 submitEl.addEventListener("click", function(event){
     event.preventDefault();
-    console.log("u working bb?");
-    var movie = movieEl.value; 
+
+    var movie = movieEl.textContent; 
+
     getMovieAPI(movie);
     getCocktailDB();
 })
@@ -59,16 +60,40 @@ for every streaming service
 
 
 function getCocktailDB(){
-    var queryUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita";
+    var cocktails = ["bloody_mary", "bloody_maria", "bleeding_surgeon", "zombie", "shark_attack", "vampiro", "berry_deadly", "death_in_the_afternoon", "hot_chocolate_to_die_for", "bruised_heart"];
+
+    var random = Math.floor(Math.random() * cocktails.length);
+    console.log(random, cocktails[random]);
+
+    var queryUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + cocktails[random];
+    var drinkThumbNail = document.createElement("img");
+    var drinkName = document.createElement("h3");
+    var drinkIngredients = document.createElement("li");
+    var drinkInstructions = document.createElement("p");
 
     fetch(queryUrl)
         .then(function (response){
-            console.log("working?");
             return response.json();
         })
         .then(function (cocktailData){
             console.log(cocktailData);
+
+            var drinkImg = cocktailData.drinks[0].strDrinkThumb;
+
+            console.log(cocktailData.drinks[0].strImageSource);
+
+            drinkThumbNail.setAttribute("src", drinkImg);
+            // drinkThumnail.setAttribute("class", 100pix)
+            drinkName.textContent = cocktailData.drinks[0].strDrink;
+            drinkIngredients = cocktailData.drinks[0].strIngredient1;
+            drinkInstructions = cocktailData.drinks[0].strInstructions;
+
+            drinkCardEl.append(drinkThumbNail);
+            drinkCardEl.append(drinkName);
+            drinkCardEl.append(drinkIngredients);
+            drinkCardEl.append(drinkInstructions);
         })
+
 
 
 }
