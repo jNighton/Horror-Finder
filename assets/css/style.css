@@ -3,21 +3,21 @@
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
+
 body {
     background: linear-gradient(to bottom right, black, #400000);
     height: 100vh;
+    display: flexbox;
 }
-p {
-    color: rgb(200, 17, 17);
-}
+
 /* search bar styling */
 .container{
     width: 100%;
-
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 form {
     background: #fff;
     width: 500px;
@@ -25,11 +25,13 @@ form {
     display: flex;
     border-radius: 40px;
 }
+
 form input{
     flex: 1;
     border: none;
     outline: none;
 }
+
 form button{
     background: rgb(171, 11, 11);
     padding: 10px 50px;
@@ -57,18 +59,46 @@ form .fa-search{
     display: flex;
     justify-content: center;
     margin: 0;
+
+}
+.service-btn button{
+    border-radius: 50%;
+    background-color: transparent;
+    outline: none;
+    border: 0px;
+}
+.service-btn image {
+    
+}
+
+header {
+    display: block;
 }
 .logo {
-
     justify-content: center;
+    width: fit-content;
 }
+
 
 .movie-card {
     font-size: medium;
+    background-color: rgba(0,0,0,.6);
+    color: white;
+    max-height: 40vh;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
 }
 
+#movie-poster img {
+    width: 100px;
+    float: left;
+    margin: 0px 10px;
+}
 #movie-title {
     color: white;
     font-size: medium;
     font-weight: bold;
+    width: 1000px
 }
