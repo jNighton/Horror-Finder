@@ -28,16 +28,16 @@ var drinkCardEl = document.querySelector("#drink-card");
     
     submitEl.addEventListener("click", function(event){
         event.preventDefault();
-        
     
         movie = $('#movie').val().trim()
         console.log(movie) 
         
-        getMovieAPI(movie);
+        getTmdbAPI(movie);
+        getMotNAPI(movie);
         // move this -> getCocktailDB();
     })
     
-    function getMovieAPI(movie){
+    function getTmdbAPI(movie){
         var apiKey = "b17d58183a19638723e4cef78264f6c2";
         var tmdbQueryUrl = "https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27";
 
@@ -79,6 +79,22 @@ for every streaming service
 }
 
 
+function getMotNAPI(movie) {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '54664c79a4msh5e441cee8ee88b1p10830cjsn8417ae33858b',
+            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+        }
+    };
+    fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service='+ streamingService +'&type=movie&genre=27&page=1&output_language=en&language=en', options)
+    // create empty string for all streaming services so
+    // add click event that listens for each streaming service and pulls all horror movies from those services
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+
+
 function getCocktailDB(){
     var cocktails = ["bloody_mary", "bloody_maria", "bleeding_surgeon", "zombie", "shark_attack", "vampiro", "berry_deadly", "death_in_the_afternoon", "hot_chocolate_to_die_for", "bruised_heart"];
 
@@ -115,5 +131,5 @@ function getCocktailDB(){
         })
 
 
-
+    }
 }
