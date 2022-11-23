@@ -95,20 +95,31 @@ form .fa-search{
     max-height: 40vh;
     flex-basis: 1400px;
     flex-grow: 0;
-    margin: 40px;
+    margin: 20px 40px 0px 40px;
 }
 
 
 #movie-poster img {
     width: 100px;
     float: left;
-    margin: 0px 10px;
+    margin: 10px;
 }
 #movie-title {
     color: white;
     font-size: medium;
     font-weight: bold;
-    /* width: 1000px */
+    margin-left: 10px;
+
+}
+.drink-card {
+    display: none;
+    font-size: medium;
+    background-color: rgba(0,0,0,.6);
+    color: white;
+    max-height: 40vh;
+    flex-basis: 1400px;
+    flex-grow: 0;
+    margin: 0px 40px 20px 40px;
 }
 
 .flex-container {
@@ -120,4 +131,26 @@ form .fa-search{
 }
 #streaming-tag {
     background-color: rgba(0,0,0,.6);
+}
+
+#get-smashed-button {
+    background-color: rgba(0,0,0,.6);
+    color: white;
+    max-height: 40vh;
+    flex-basis: 1400px;
+    flex-grow: 0;
+    padding: 10px;
+    margin: 0px 40px 20px 40px;
+    display: flex;
+    justify-content: center;
+}
+#get-smashed-generator {
+    background: rgb(212, 35, 64);
+    padding: 10px 50px;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    color: rgb(244, 234, 234);
+    letter-spacing: 1px;
+    cursor: pointer;
 }
