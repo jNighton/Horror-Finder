@@ -119,7 +119,7 @@ form .fa-search{
     max-height: 40vh;
     flex-basis: 1400px;
     flex-grow: 0;
-    margin: 0px 40px 20px 40px;
+    margin: 0px 40px 0px 40px;
 }
 
 .flex-container {
@@ -139,10 +139,11 @@ form .fa-search{
     max-height: 40vh;
     flex-basis: 1400px;
     flex-grow: 0;
-    padding: 10px;
-    margin: 0px 40px 20px 40px;
+    padding: 30px;
+    margin: 0px 40px 0px 40px;
     display: flex;
     justify-content: center;
+    
 }
 #get-smashed-generator {
     background: rgb(212, 35, 64);
@@ -153,4 +154,13 @@ form .fa-search{
     color: rgb(244, 234, 234);
     letter-spacing: 1px;
     cursor: pointer;
+}
+
+.streaming-btns {
+    position: relative;
+    bottom: -85px;
+}
+.streaming-btns img {
+    width: 30px;
+
 }
