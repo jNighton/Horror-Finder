@@ -1,13 +1,12 @@
-
 // var requestMotNapi =
 var submitEl = document.querySelector("#submit");
-
+ 
 var btnHuluEl = document.querySelector("#btn-hulu");
 var btnNetflixEl = document.querySelector("#btn-netflix");
 var btnPrimeEl = document.querySelector("#btn-prime");
 var btnHboEl = document.querySelector("#btn-hbo");
 var streamingService = "netflix";
-
+ 
 var movieEl = document.querySelector("#movie");
 var movieTitleEl = document.querySelector("#movie-title");
 var moviePosterEl = document.querySelector("#movie-poster");
@@ -19,42 +18,42 @@ var iconHuluEl = document.querySelector("#icon-hulu");
 var iconPrimeEl = document.querySelector("#icon-prime");
 var iconHBOEl = document.querySelector("#icon-HBO");
 var movie = "";
-
+ 
 var smashedBtnEl = document.querySelector("#get-smashed-button");
 var drinkCardEl = document.querySelector(".drink-card");
-
+ 
 // var streamingServices = {
-    
+   
     // }
-    
+   
     submitEl.addEventListener("click", function(event){
         event.preventDefault();
-    
+   
         movie = $('#movie').val().trim()
-        console.log(movie) 
-        
+        console.log(movie)
+       
         getTmdbAPI(movie);
         getMotNAPI(movie);
         // move this -> getCocktailDB();
     })
-    
+   
     function getTmdbAPI(movie){
         var apiKey = "b17d58183a19638723e4cef78264f6c2";
         var tmdbQueryUrl = "https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27";
-
+ 
         fetch(tmdbQueryUrl)
         .then(function (response){
             return response.json();
         })
         .then(function (movieData){
             console.log(movieData);
-
+ 
         })
-
-
+ 
+ 
         /*populate movie variables with api data
-
-
+ 
+ 
 for every streaming service
     if movie is on netflix{
         display netflix icon
@@ -76,10 +75,10 @@ for every streaming service
     }else{
         hide HBO icon
     }
-   */ 
+   */
 }
-
-
+ 
+ 
 function getMotNAPI(movie) {
     const options = {
         method: 'GET',
@@ -94,20 +93,20 @@ function getMotNAPI(movie) {
         .then(response => response.json())
         .then(response => console.log(response))
         .catch(err => console.error(err));
-
-
-
+ 
+ 
+ 
 }
 function getCocktailDB(){
     var cocktails = ["bloody_mary", "bloody_maria", "bleeding_surgeon", "zombie", "shark_attack", "vampiro", "berry_deadly", "death_in_the_afternoon", "hot_chocolate_to_die_for", "bruised_heart"];
-
+ 
     var random = Math.floor(Math.random() * cocktails.length);
     console.log(random, cocktails[random]);
-
+ 
     var queryUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + cocktails[random];
    
    
-
+ 
     fetch(queryUrl)
         .then(function (response){
             return response.json();
@@ -124,11 +123,11 @@ function getCocktailDB(){
     var drinkName = document.createElement("h4");
     var drinkIngredients = document.createElement("li");
     var drinkInstructions = document.createElement("li");
-
+ 
             var drinkImg = cocktailData.drinks[0].strDrinkThumb;
-
+ 
             console.log(cocktailData.drinks[0].strImageSource);
-
+ 
             drinkThumbNail.setAttribute("src", drinkImg);
             // drinkThumnail.setAttribute("class", 100pix)
             drinkName.textContent = cocktailData.drinks[0].strDrink;
@@ -140,13 +139,12 @@ function getCocktailDB(){
             drinkBody.append(drinkThumbNail,drinkTable)
             drinkCardEl.append(drinktitle,drinkBody);
             console.log(drinkCardEl)
-            
+           
         })
-
-
+ 
+ 
     }
 smashedBtnEl.addEventListener("click", ()=>{
-    // console.log("click") 
+    // console.log("click")
     getCocktailDB()
 })
-

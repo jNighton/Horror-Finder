@@ -10,13 +10,15 @@ body {
     height: 100vh;
     display: flexbox;
 }
+
 header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
+
 /* search bar styling */
-.container{
+.container {
     width: 100%;
     display: flex;
     align-items: center;
@@ -31,49 +33,53 @@ form {
     border-radius: 40px;
 }
 
-form input{
+form input {
     flex: 1;
     border: none;
     outline: none;
     color: black;
 }
 
-form button{
+form button {
     background: rgb(212, 35, 64);
     padding: 10px 50px;
     border: none;
-    border-top-right-radius: 40px ;
+    border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
     outline: none;
     color: rgb(244, 234, 234);
     letter-spacing: 1px;
     cursor: pointer;
 }
-form .fa-search{
+
+form .fa-search {
     align-self: center;
     padding: 10px 20px;
     color: #777;
 }
+
 /*  */
 
-.movie-section{
+.movie-section {
     display: flex;
     justify-content: center;
 }
 
-.service-btn{
+.service-btn {
     display: flex;
     justify-content: center;
     margin: 0;
 
 }
-.service-btn button{
+
+.service-btn button {
     border-radius: 50%;
     background-color: transparent;
     outline: none;
     border: 0px;
     width: 50px
 }
+
 .service-btn img {
     width: 50px;
 }
@@ -90,7 +96,7 @@ form .fa-search{
 
 .movie-card {
     font-size: medium;
-    background-color: rgba(0,0,0,.6);
+    background-color: rgba(0, 0, 0, .6);
     color: white;
     max-height: 40vh;
     flex-basis: 1400px;
@@ -104,6 +110,7 @@ form .fa-search{
     float: left;
     margin: 10px;
 }
+
 #movie-title {
     color: white;
     font-size: medium;
@@ -111,10 +118,11 @@ form .fa-search{
     margin-left: 10px;
 
 }
+
 .drink-card {
     /* display: none; */
     font-size: medium;
-    background-color: rgba(0,0,0,.6);
+    background-color: rgba(0, 0, 0, .6);
     color: white;
     max-height: 40vh;
     flex-basis: 1400px;
@@ -124,13 +132,14 @@ form .fa-search{
 
 .flex-container {
     display: flex;
-  flex-wrap: wrap;
-  font-size: 30px;
-  justify-content: center;
-  
+    flex-wrap: wrap;
+    font-size: 30px;
+    justify-content: center;
+
 }
+
 #streaming-tag {
-    background-color: rgba(0,0,0,.6);
+    background-color: rgba(0, 0, 0, .6);
 }
 
 #get-smashed-container {
@@ -146,7 +155,7 @@ form .fa-search{
 }
 
 #get-smashed-button {
-    background-color: rgba(0,0,0,.6);
+    background-color: rgba(0, 0, 0, .6);
     color: white;
     max-height: 40vh;
     flex-basis: 1400px;
@@ -155,8 +164,9 @@ form .fa-search{
     margin: 0px 40px 0px 40px;
     display: flex;
     justify-content: center;
-    
+
 }
+
 #get-smashed-generator {
     background: rgb(212, 35, 64);
     padding: 10px 50px;
@@ -172,6 +182,7 @@ form .fa-search{
     position: relative;
     bottom: -85px;
 }
+
 .streaming-btns img {
     width: 30px;
 
