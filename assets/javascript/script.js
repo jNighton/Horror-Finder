@@ -20,22 +20,23 @@ var iconPrimeEl = document.querySelector("#icon-prime");
 var iconHBOEl = document.querySelector("#icon-HBO");
 var movie = "";
 
-var drinkCardEl = document.querySelector("#drink-card");
+var smashedBtnEl = document.querySelector("#get-smashed-button");
+var drinkCardEl = document.querySelector(".drink-card");
 
 // var streamingServices = {
     
     // }
     
-    submitEl.addEventListener("click", function(event){
-        event.preventDefault();
+    // submitEl.addEventListener("click", function(event){
+    //     event.preventDefault();
     
-        movie = $('#movie').val().trim()
-        console.log(movie) 
+    //     movie = $('#movie').val().trim()
+    //     console.log(movie) 
         
-        getTmdbAPI(movie);
-        getMotNAPI(movie);
-        // move this -> getCocktailDB();
-    })
+    //     getTmdbAPI(movie);
+    //     getMotNAPI(movie);
+    //     // move this -> getCocktailDB();
+    // })
     
     function getTmdbAPI(movie){
         var apiKey = "b17d58183a19638723e4cef78264f6c2";
@@ -79,6 +80,7 @@ for every streaming service
 }
 
 
+
 function getMotNAPI(movie) {
     const options = {
         method: 'GET',
@@ -93,7 +95,12 @@ function getMotNAPI(movie) {
         .then(response => response.json())
         .then(response => console.log(response))
         .catch(err => console.error(err));
+}
 
+smashedBtnEl.addEventListener("click", function(event){
+    event.preventDefault();
+    getCocktailDB();
+})
 
 function getCocktailDB(){
     var cocktails = ["bloody_mary", "bloody_maria", "bleeding_surgeon", "zombie", "shark_attack", "vampiro", "berry_deadly", "death_in_the_afternoon", "hot_chocolate_to_die_for", "bruised_heart"];
@@ -104,7 +111,7 @@ function getCocktailDB(){
     var queryUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + cocktails[random];
     var drinkThumbNail = document.createElement("img");
     var drinkName = document.createElement("h3");
-    var drinkIngredients = document.createElement("li");
+    var drinkIngredients = document.createElement("p");
     var drinkInstructions = document.createElement("p");
 
     fetch(queryUrl)
@@ -112,24 +119,29 @@ function getCocktailDB(){
             return response.json();
         })
         .then(function (cocktailData){
-            console.log(cocktailData);
+            console.log(cocktailData);            
 
             var drinkImg = cocktailData.drinks[0].strDrinkThumb;
 
-            console.log(cocktailData.drinks[0].strImageSource);
+            console.log(cocktailData.drinks[0].strDrinkThumb);
 
             drinkThumbNail.setAttribute("src", drinkImg);
-            // drinkThumnail.setAttribute("class", 100pix)
             drinkName.textContent = cocktailData.drinks[0].strDrink;
-            drinkIngredients = cocktailData.drinks[0].strIngredient1;
-            drinkInstructions = cocktailData.drinks[0].strInstructions;
+            drinkIngredients.textContent = "Ingredients: " +cocktailData.drinks[0].strIngredient1 + ", " + cocktailData.drinks[0].strIngredient2 + ", " + cocktailData.drinks[0].strIngredient3 + ", " + cocktailData.drinks[0].strIngredient4 + ", " + cocktailData.drinks[0].strIngredient5 + ", " + cocktailData.drinks[0].strIngredient6 + ", " + cocktailData.drinks[0].strIngredient7 + ", " + cocktailData.drinks[0].strIngredient8 + ", " + cocktailData.drinks[0].strIngredient9 + ", " + cocktailData.drinks[0].strIngredient10 + ", " + cocktailData.drinks[0].strIngredient11 + ", " + cocktailData.drinks[0].strIngredient12;
 
-            drinkCardEl.append(drinkThumbNail);
-            drinkCardEl.append(drinkName);
-            drinkCardEl.append(drinkIngredients);
-            drinkCardEl.append(drinkInstructions);
+            drinkInstructions.textContent = "Insctructions: " + cocktailData.drinks[0].strInstructions;
+
+            console.log(drinkName);
+            console.log(drinkIngredients);
+            console.log(drinkInstructions);
+
+            drinkCardEl.appendChild(drinkThumbNail);
+            drinkCardEl.appendChild(drinkName);
+            drinkCardEl.appendChild(drinkIngredients);
+            drinkCardEl.appendChild(drinkInstructions);
+            
+
         })
 
 
     }
-}
