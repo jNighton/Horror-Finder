@@ -7,15 +7,19 @@
 
 body {
     background: linear-gradient(to bottom right, black, #400000);
-    height: 100vh;
+    background-repeat: no-repeat;
+    height: 100%;
     display: flexbox;
 }
+
 header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
+
 /* search bar styling */
+
 .container{
     width: 100%;
     display: flex;
@@ -49,12 +53,12 @@ form button{
     letter-spacing: 1px;
     cursor: pointer;
 }
+
 form .fa-search{
     align-self: center;
     padding: 10px 20px;
     color: #777;
 }
-/*  */
 
 .movie-section{
     display: flex;
@@ -65,8 +69,8 @@ form .fa-search{
     display: flex;
     justify-content: center;
     margin: 0;
-
 }
+
 .service-btn button{
     border-radius: 50%;
     background-color: transparent;
@@ -74,19 +78,16 @@ form .fa-search{
     border: 0px;
     width: 50px
 }
+
 .service-btn img {
     width: 50px;
 }
-
 
 .logo img {
     flex-basis: 400px;
     flex-grow: 0;
     flex-shrink: 1;
-
-
 }
-
 
 .movie-card {
     font-size: medium;
@@ -98,21 +99,20 @@ form .fa-search{
     margin: 20px 40px 0px 40px;
 }
 
-
 #movie-poster img {
     width: 100px;
     float: left;
     margin: 10px;
 }
+
 #movie-title {
     color: white;
-    font-size: medium;
+    /* font-size: large; */
     font-weight: bold;
     margin-left: 10px;
-
 }
+
 .drink-card {
-    display: none;
     font-size: medium;
     background-color: rgba(0,0,0,.6);
     color: white;
@@ -120,6 +120,7 @@ form .fa-search{
     flex-basis: 1400px;
     flex-grow: 0;
     margin: 0px 40px 0px 40px;
+    display: block;
 }
 
 .flex-container {
@@ -129,11 +130,12 @@ form .fa-search{
   justify-content: center;
   
 }
+
 #streaming-tag {
     background-color: rgba(0,0,0,.6);
 }
 
-#get-smashed-button {
+#get-smashed-container {
     background-color: rgba(0,0,0,.6);
     color: white;
     max-height: 40vh;
@@ -142,10 +144,10 @@ form .fa-search{
     padding: 30px;
     margin: 0px 40px 0px 40px;
     display: flex;
-    justify-content: center;
-    
+    justify-content: space-around;
 }
-#get-smashed-generator {
+
+#get-smashed-button {
     background: rgb(212, 35, 64);
     padding: 10px 50px;
     border: none;
@@ -160,7 +162,26 @@ form .fa-search{
     position: relative;
     bottom: -85px;
 }
+
 .streaming-btns img {
     width: 30px;
+}
 
+/* element created in javascipt for drink card */
+img {
+    width: 150px;
+    float: left;
+    padding-top: 25px;
+    padding-right: 10px;
+}
+
+/* element created in javascipt for drink card */
+h3 {
+    color: white;
+    font-size: 22pt;
+}
+
+/* element created in javascipt for drink card */
+p {
+    padding-bottom: 10px;
 }
