@@ -112,7 +112,7 @@ form .fa-search{
 
 }
 .drink-card {
-    display: none;
+    /* display: none; */
     font-size: medium;
     background-color: rgba(0,0,0,.6);
     color: white;
@@ -131,6 +131,18 @@ form .fa-search{
 }
 #streaming-tag {
     background-color: rgba(0,0,0,.6);
+}
+
+#get-smashed-container {
+    background-color: rgba(0, 0, 0, .6);
+    color: white;
+    max-height: 40vh;
+    flex-basis: 1400px;
+    flex-grow: 0;
+    padding: 30px;
+    margin: 0px 40px 0px 40px;
+    display: flex;
+    justify-content: space-around;
 }
 
 #get-smashed-button {
@@ -163,4 +175,23 @@ form .fa-search{
 .streaming-btns img {
     width: 30px;
 
+}
+
+/* element created in javascipt for drink card */
+img {
+    width: 150px;
+    float: left;
+    padding-top: 25px;
+    padding-right: 10px;
+}
+
+/* element created in javascipt for drink card */
+h3 {
+    color: white;
+    font-size: 22pt;
+}
+
+/* element created in javascipt for drink card */
+p {
+    padding-bottom: 10px;
 }

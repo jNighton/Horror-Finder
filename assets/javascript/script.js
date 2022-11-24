@@ -20,7 +20,8 @@ var iconPrimeEl = document.querySelector("#icon-prime");
 var iconHBOEl = document.querySelector("#icon-HBO");
 var movie = "";
 
-var drinkCardEl = document.querySelector("#drink-card");
+var smashedBtnEl = document.querySelector("#get-smashed-button");
+var drinkCardEl = document.querySelector(".drink-card");
 
 // var streamingServices = {
     
@@ -95,6 +96,8 @@ function getMotNAPI(movie) {
         .catch(err => console.error(err));
 
 
+
+}
 function getCocktailDB(){
     var cocktails = ["bloody_mary", "bloody_maria", "bleeding_surgeon", "zombie", "shark_attack", "vampiro", "berry_deadly", "death_in_the_afternoon", "hot_chocolate_to_die_for", "bruised_heart"];
 
@@ -102,10 +105,8 @@ function getCocktailDB(){
     console.log(random, cocktails[random]);
 
     var queryUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + cocktails[random];
-    var drinkThumbNail = document.createElement("img");
-    var drinkName = document.createElement("h3");
-    var drinkIngredients = document.createElement("li");
-    var drinkInstructions = document.createElement("p");
+   
+   
 
     fetch(queryUrl)
         .then(function (response){
@@ -113,6 +114,16 @@ function getCocktailDB(){
         })
         .then(function (cocktailData){
             console.log(cocktailData);
+            drinkCardEl.innerHTML=""
+             var drinktitle = document.createElement("div")
+    drinktitle.setAttribute("class","card-title")
+    var drinkBody = document.createElement("div")
+    drinkBody.setAttribute("class","card-body")
+    var drinkTable = document.createElement("ul")
+    var drinkThumbNail = document.createElement("img");
+    var drinkName = document.createElement("h4");
+    var drinkIngredients = document.createElement("li");
+    var drinkInstructions = document.createElement("li");
 
             var drinkImg = cocktailData.drinks[0].strDrinkThumb;
 
@@ -121,15 +132,21 @@ function getCocktailDB(){
             drinkThumbNail.setAttribute("src", drinkImg);
             // drinkThumnail.setAttribute("class", 100pix)
             drinkName.textContent = cocktailData.drinks[0].strDrink;
+            console.log(drinkName)
             drinkIngredients = cocktailData.drinks[0].strIngredient1;
             drinkInstructions = cocktailData.drinks[0].strInstructions;
-
-            drinkCardEl.append(drinkThumbNail);
-            drinkCardEl.append(drinkName);
-            drinkCardEl.append(drinkIngredients);
-            drinkCardEl.append(drinkInstructions);
+            drinktitle.append(drinkName)
+            drinkTable.append(drinkIngredients,drinkInstructions)
+            drinkBody.append(drinkThumbNail,drinkTable)
+            drinkCardEl.append(drinktitle,drinkBody);
+            console.log(drinkCardEl)
+            
         })
 
 
     }
-}
+smashedBtnEl.addEventListener("click", ()=>{
+    // console.log("click") 
+    getCocktailDB()
+})
+
