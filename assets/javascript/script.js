@@ -1,12 +1,9 @@
-
-// var requestMotNapi =
 var submitEl = document.querySelector("#submit");
 
 var btnHuluEl = document.querySelector("#btn-hulu");
 var btnNetflixEl = document.querySelector("#btn-netflix");
 var btnPrimeEl = document.querySelector("#btn-prime");
 var btnHboEl = document.querySelector("#btn-hbo");
-var streamingService = "netflix";
 
 var movieEl = document.querySelector("#movie");
 var movieTitleEl = document.querySelector("#movie-title");
@@ -23,9 +20,39 @@ var movie = "";
 var smashedBtnEl = document.querySelector("#get-smashed-button");
 var drinkCardEl = document.querySelector(".drink-card");
 
-// var streamingServices = {
+let streamingService = '';
+
+btnHuluEl.addEventListener("click", function(event){
+    event.preventDefault();
+    streamingService = 'hulu'
+    getMotNAPI()
+})
+btnNetflixEl.addEventListener("click", function(event){
+    event.preventDefault();
+    streamingService = 'netflix'
+    getMotNAPI()
+})
+btnPrimeEl.addEventListener("click", function(event){
+    event.preventDefault();
+    streamingService = 'prime'
+    getMotNAPI()
+})
+btnHboEl.addEventListener("click", function(event){
+    event.preventDefault();
+    streamingService = 'hbo'
+    getMotNAPI()
+})
+
+// if (streamingService === 'hulu') {
+//     var mainScreen = document.getElementById('#main-screen');
+//     mainScreen.style.display = "block";
+
+// } else if (streamingService == 'netflix') {
+
+// } else if (streamingService == 'hbo') {
     
-    // }
+// } else (streamingService == 'prime') 
+
     
     // submitEl.addEventListener("click", function(event){
     //     event.preventDefault();
@@ -38,50 +65,28 @@ var drinkCardEl = document.querySelector(".drink-card");
     //     // move this -> getCocktailDB();
     // })
     
-    function getTmdbAPI(movie){
-        var apiKey = "b17d58183a19638723e4cef78264f6c2";
-        var tmdbQueryUrl = "https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27";
+    // function getTmdbAPI(movie){
+    //     var apiKey = "b17d58183a19638723e4cef78264f6c2";
+    //     var tmdbQueryUrl = "https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27";
 
-        fetch(tmdbQueryUrl)
-        .then(function (response){
-            return response.json();
-        })
-        .then(function (movieData){
-            console.log(movieData);
+    //     fetch(tmdbQueryUrl)
+    //     .then(function (response){
+    //         return response.json();
+    //     })
+    //     .then(function (movieData){
+    //         console.log(movieData);
 
-        })
+    //     })
 
+    // }
 
         /*populate movie variables with api data
 
 
-for every streaming service
-    if movie is on netflix{
-        display netflix icon
-    }else{
-        hide netflix icon
-    }
-    if movie is on hulu{
-        display hulu icon
-    }else{
-        hide hulu icon
-    }
-    if movie is on prime{
-        display prime icon
-    }else{
-        hide prime icon
-    }
-    if movie is on HBO{
-        display HBO icon
-    }else{
-        hide HBO icon
-    }
    */ 
-}
+// }
 
-
-
-function getMotNAPI(movie) {
+function getMotNAPI() {
     const options = {
         method: 'GET',
         headers: {
@@ -89,6 +94,7 @@ function getMotNAPI(movie) {
             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
         }
     };
+    
     fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service='+ streamingService +'&type=movie&genre=27&page=1&output_language=en&language=en', options)
     // create empty string for all streaming services so
     // add click event that listens for each streaming service and pulls all horror movies from those services
