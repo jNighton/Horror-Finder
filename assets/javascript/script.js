@@ -1,10 +1,9 @@
+// Variables Declaired Here
 var submitEl = document.querySelector("#submit");
-
 var btnHuluEl = document.querySelector("#btn-hulu");
 var btnNetflixEl = document.querySelector("#btn-netflix");
 var btnPrimeEl = document.querySelector("#btn-prime");
 var btnHboEl = document.querySelector("#btn-hbo");
-
 var movieEl = document.querySelector("#movie");
 var movieTitleEl = document.querySelector("#movie-title");
 var moviePosterEl = document.querySelector("#movie-poster");
@@ -16,12 +15,11 @@ var iconHuluEl = document.querySelector("#icon-hulu");
 var iconPrimeEl = document.querySelector("#icon-prime");
 var iconHBOEl = document.querySelector("#icon-HBO");
 var movie = "";
-
 var smashedBtnEl = document.querySelector("#get-smashed-button");
 var drinkCardEl = document.querySelector(".drink-card");
+var streamingService = '';
 
-let streamingService = '';
-
+// Streaming Service Buttons sectiion
 btnHuluEl.addEventListener("click", function(event){
     event.preventDefault();
     streamingService = 'hulu'
@@ -41,6 +39,28 @@ btnHboEl.addEventListener("click", function(event){
     event.preventDefault();
     streamingService = 'hbo'
     getMotNAPI()
+})
+
+// Movie Of The Night API 
+function getMotNAPI() {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '54664c79a4msh5e441cee8ee88b1p10830cjsn8417ae33858b',
+            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+        }
+    };
+    
+    fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service='+ streamingService +'&type=movie&genre=27&page=1&output_language=en&language=en', options)
+
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+}
+
+smashedBtnEl.addEventListener("click", function(event){
+    event.preventDefault();
+    getCocktailDB();
 })
 
 // if (streamingService === 'hulu') {
@@ -82,32 +102,10 @@ btnHboEl.addEventListener("click", function(event){
 
         /*populate movie variables with api data
 
-
    */ 
 // }
 
-function getMotNAPI() {
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': '54664c79a4msh5e441cee8ee88b1p10830cjsn8417ae33858b',
-            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
-        }
-    };
-    
-    fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service='+ streamingService +'&type=movie&genre=27&page=1&output_language=en&language=en', options)
-    // create empty string for all streaming services so
-    // add click event that listens for each streaming service and pulls all horror movies from those services
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
-}
-
-smashedBtnEl.addEventListener("click", function(event){
-    event.preventDefault();
-    getCocktailDB();
-})
-
+// Cocktail API
 function getCocktailDB(){
     var cocktails = ["bloody_mary", "bloody_maria", "bleeding_surgeon", "zombie", "shark_attack", "vampiro", "berry_deadly", "death_in_the_afternoon", "hot_chocolate_to_die_for", "bruised_heart"];
 
