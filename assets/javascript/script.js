@@ -8,7 +8,7 @@ var btnPrimeEl = document.querySelector("#btn-prime");
 var btnHboEl = document.querySelector("#btn-hbo");
 var streamingService = "netflix";
 
-var movieEl = document.querySelector("#movie");
+var movieEl = document.querySelector(".movie-card");
 var movieTitleEl = document.querySelector("#movie-title");
 var moviePosterEl = document.querySelector("#movie-poster");
 var movieDescriptionEl = document.querySelector("#movie-description");
@@ -38,9 +38,14 @@ var drinkCardEl = document.querySelector(".drink-card");
     //     // move this -> getCocktailDB();
     // })
     
-    function getTmdbAPI(movie){
+    function getTmdbAPI(){
         var apiKey = "b17d58183a19638723e4cef78264f6c2";
         var tmdbQueryUrl = "https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27";
+
+        var movieTitle = document.createElement("h2");
+        var moviePoster = document.createElement("img");
+        var movieDescription = document.createElement("p");
+        var movieYear = document.createElement("p");
 
         fetch(tmdbQueryUrl)
         .then(function (response){
@@ -49,8 +54,25 @@ var drinkCardEl = document.querySelector(".drink-card");
         .then(function (movieData){
             console.log(movieData);
 
-        })
+            for (var i = 0; i < 10; i++) {
+                var posterImg = "https://image.tmdb.org/t/p/w185/" + movieData.results[i].poster_path;
 
+                moviePoster.setAttribute("src", posterImg);
+                movieTitle.textContent = movieData.results[i].title;
+                movieDescription.textContent = movieData.results[i].overview;
+                movieYear.textcontent = movieData.results[i].release_date;
+            
+                console.log(movieTitle);
+
+                movieEl.appendChild(movieTitle);
+                movieEl.appendChild(moviePoster);
+                movieEl.appendChild(movieDescription);
+                movieEl.appendChild(movieYear);
+            }
+            
+        })
+    
+    }
 
         /*populate movie variables with api data
 
@@ -77,7 +99,7 @@ for every streaming service
         hide HBO icon
     }
    */ 
-}
+
 
 
 
@@ -145,3 +167,5 @@ function getCocktailDB(){
 
 
     }
+
+    getTmdbAPI();
