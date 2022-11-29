@@ -8,8 +8,8 @@ var flexContainerEl = document.querySelector(".flex-container");
 var movie = '';
 var streamingService = '';
 
+// Main Screen movie suggestions 
 function getTmdbAPI() {
-    // apiKey = "b17d58183a19638723e4cef78264f6c2";
     var tmdbQueryUrl = "https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27";
     fetch(tmdbQueryUrl)
         .then(function (response) {
@@ -79,8 +79,7 @@ btnHboEl.addEventListener('click', function (event) {
     hideTmdbApi();
 })
 
-
-// Movie Of The Night API
+// Movie Of The Night API / Movies based on streaming service 
 function getMotNAPI() {
     const options = {
         method: 'GET',
@@ -89,14 +88,11 @@ function getMotNAPI() {
             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
         }
     };
-
     fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + streamingService + '&type=movie&genre=27&page=1&output_language=en&language=en', options)
-
         .then(function (response) {
             return response.json();
         })
         .then(function (streamMovieData) {
-            console.log(streamMovieData);
 
             for (var i = 0; i < 7; i++) {
                 var movieEl = document.createElement('section');
@@ -116,13 +112,6 @@ function getMotNAPI() {
                 movieDescriptionEl.innerHTML = `Description: ${streamMovieData.results[i].overview}`;
                 movieYearEl.innerHTML = `Year: ${streamMovieData.results[i].year}`;
 
-
-                console.log(movieTitleEl);
-                console.log(movieTitleEl);
-                console.log(movieTitleEl);
-                console.log(movieTitleEl);
-
-
                 movieListEl.appendChild(movieEl)
                 movieEl.appendChild(moviePosterEl)
                 movieEl.appendChild(movieTitleEl)
@@ -135,16 +124,14 @@ function getMotNAPI() {
         })
 }
 
-// Cocktail API
+// Cocktail API / Randomize coctail suggestion cards
 function generateGetSmashedBtn(movieEl) {
 
     var smashedContainerEl = document.createElement('div');
     smashedContainerEl.setAttribute('class', 'get-smashed-container');
-
     var smashedBtnEl = document.createElement('button');
     smashedBtnEl.setAttribute('id', 'get-smashed-button');
     smashedBtnEl.textContent = 'Get Smashed?';
-
     movieEl.appendChild(smashedContainerEl);
     smashedContainerEl.appendChild(smashedBtnEl);
 
@@ -157,10 +144,7 @@ function generateGetSmashedBtn(movieEl) {
 
 function getCocktailDB(movieEl) {
     var cocktails = ['bloody_mary', 'bloody_maria', 'bleeding_surgeon', 'zombie', 'shark_attack', 'vampiro', 'berry_deadly', 'death_in_the_afternoon', 'hot_chocolate_to_die_for', 'bruised_heart'];
-
     var random = Math.floor(Math.random() * cocktails.length);
-    console.log(random, cocktails[random]);
-
     var queryUrl = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + cocktails[random];
     var drinkThumbNail = document.createElement('img');
     var drinkName = document.createElement('h3');
@@ -172,17 +156,10 @@ function getCocktailDB(movieEl) {
             return response.json();
         })
         .then(function (cocktailData) {
-            console.log(cocktailData);
-
-            // var movieCardEl = document.querySelector('.movie-card');
 
             var drinkCardEl = document.createElement('div');
             drinkCardEl.setAttribute('class', 'drink-card');
-
             var drinkImg = cocktailData.drinks[0].strDrinkThumb;
-
-            console.log(cocktailData.drinks[0].strDrinkThumb);
-
             drinkThumbNail.setAttribute('src', drinkImg);
             drinkName.textContent = cocktailData.drinks[0].strDrink;
             drinkName.setAttribute('id', 'drink-name');
@@ -191,19 +168,11 @@ function getCocktailDB(movieEl) {
             drinkInstructions.textContent = 'Instructions: ' + cocktailData.drinks[0].strInstructions;
             drinkInstructions.setAttribute('id', 'instructions');
 
-            console.log(drinkName);
-            console.log(drinkIngredients);
-            console.log(drinkInstructions);
-
             movieEl.appendChild(drinkCardEl);
             drinkCardEl.appendChild(drinkThumbNail);
             drinkCardEl.appendChild(drinkName);
             drinkCardEl.appendChild(drinkIngredients);
             drinkCardEl.appendChild(drinkInstructions);
-
-
         })
-
 }
-
 getTmdbAPI();
