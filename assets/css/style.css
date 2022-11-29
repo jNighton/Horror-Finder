@@ -7,13 +7,10 @@
 
 body {
     background: linear-gradient(to bottom right, black, #400000);
-<<<<<<< Updated upstream
-    height: 100vh;
-=======
     background-repeat: no-repeat;
     min-height: 100vh;
     height: 100%;
->>>>>>> Stashed changes
+    padding: 10px;
     display: flexbox;
 }
 header {
