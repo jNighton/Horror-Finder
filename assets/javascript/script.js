@@ -23,12 +23,17 @@ var drinkCardEl = document.querySelector("#drink-card");
     
     submitEl.addEventListener("click", function(event){
         event.preventDefault();
+<<<<<<< Updated upstream
         
         movie = $('#movie').val().trim()
         console.log(movie) 
         
         getMovieAPI(movie);
         getCocktailDB();
+=======
+        getCocktailDB(movieEl); 
+        smashedBtnEl.setAttribute('style', 'display: none');  
+>>>>>>> Stashed changes
     })
     
     

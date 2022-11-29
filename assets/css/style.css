@@ -95,10 +95,11 @@ form .fa-search{
     font-size: medium;
     background-color: rgba(0,0,0,.6);
     color: white;
-    max-height: 40vh;
+
     flex-basis: 1400px;
     flex-grow: 0;
     margin: 20px 40px 0px 40px;
+    padding: 0px 20px;
 }
 
 
@@ -109,7 +110,11 @@ form .fa-search{
 }
 #movie-title {
     color: white;
+<<<<<<< Updated upstream
     font-size: medium;
+=======
+
+>>>>>>> Stashed changes
     font-weight: bold;
     margin-left: 10px;
 
@@ -117,12 +122,16 @@ form .fa-search{
 .drink-card {
     display: none;
     font-size: medium;
-    background-color: rgba(0,0,0,.6);
     color: white;
-    max-height: 40vh;
     flex-basis: 1400px;
     flex-grow: 0;
+<<<<<<< Updated upstream
     margin: 0px 40px 0px 40px;
+=======
+    margin: 160px 0px 20px 0px;
+    width:fit-content;
+
+>>>>>>> Stashed changes
 }
 
 .flex-container {
