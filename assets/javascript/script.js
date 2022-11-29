@@ -1,5 +1,5 @@
 // Variables Declaired Here
-var submitEl = document.querySelector('#submit');
+
 var btnHuluEl = document.querySelector('#btn-hulu');
 var btnNetflixEl = document.querySelector('#btn-netflix');
 var btnPrimeEl = document.querySelector('#btn-prime');
@@ -25,21 +25,6 @@ var huluScreen = $('#hulu-screen').css('display', 'block');
 var netflixScreen = $('#netflix-screen').css('display', 'block');
 var primeScreen = $('#prime-screen').css('display', 'block');
 var hboScreen = $('#hbo-screen').css('display', 'block');
-
-// var streamingServices = {
-    
-    // }
-    
-    // submitEl.addEventListener("click", function(event){
-    //     event.preventDefault();
-    
-    //     movie = $('#movie').val().trim()
-    //     console.log(movie) 
-        
-    //     getTmdbAPI(movie);
-    //     getMotNAPI(movie);
-    //     // move this -> getCocktailDB();
-    // })
     
     function getTmdbAPI(){
         var apiKey = "b17d58183a19638723e4cef78264f6c2";
