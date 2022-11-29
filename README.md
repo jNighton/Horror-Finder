@@ -12,7 +12,7 @@ Given a random horror film generator\
 WHEN I load the page\
 THEN I am presented with 10 of most popular horror movies at the time\
 WHEN I select a streaming service\
-THEN I am presented with movie results for that streaming service that includes the movie title, poster, description, year, rating, and platforms for streaming\
+THEN I am presented with movie results for that streaming service that includes the movie title, poster, description, and year.\
 WHEN I am presented with movie results\
 THEN I am also presented with an option for a random spooky themed cocktail\
 
@@ -41,6 +41,6 @@ The Cocktail db API: https://www.thecocktaildb.com/
 ## Assets
 
 ![screenshot](assets/images/website-Screenshot.png)
-https://jnighton.github.io/weather-dashboard/
+https://jnighton.github.io/Horror-Finder/
 
 file:///C:/Users/Jakob%20Dayton/Assignments/Horror-Finder/index.html
