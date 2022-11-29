@@ -3,30 +3,22 @@ var btnHuluEl = document.querySelector('#btn-hulu');
 var btnNetflixEl = document.querySelector('#btn-netflix');
 var btnPrimeEl = document.querySelector('#btn-prime');
 var btnHboEl = document.querySelector('#btn-hbo');
-
 var movieListEl = document.querySelector('.movie-list-container');
 var flexContainerEl = document.querySelector(".flex-container");
-
 var movie = '';
-
 var streamingService = '';
 
 function getTmdbAPI() {
     // apiKey = "b17d58183a19638723e4cef78264f6c2";
     var tmdbQueryUrl = "https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27";
-
-
     fetch(tmdbQueryUrl)
         .then(function (response) {
             return response.json();
         })
         .then(function (movieData) {
-            console.log(movieData);
-
             for (var i = 0; i < 10; i++) {
                 var movieEl = document.createElement('section');
                 movieEl.setAttribute('class', 'movie-card');
-
                 var movieTitle = document.createElement("h2");
                 movieTitle.setAttribute('id', 'movie-title');
                 var moviePoster = document.createElement("img");
@@ -42,9 +34,6 @@ function getTmdbAPI() {
                 movieDescription.textContent = movieData.results[i].overview;
                 movieYear.textcontent = movieData.results[i].release_date;
 
-                console.log(movieTitle);
-                console.log(i);
-
                 flexContainerEl.appendChild(movieEl);
                 movieEl.appendChild(movieTitle);
                 movieEl.appendChild(moviePoster);
@@ -52,11 +41,8 @@ function getTmdbAPI() {
                 movieEl.appendChild(movieYear);
 
                 generateGetSmashedBtn(movieEl);
-
             }
-
         })
-
 }
 
 function hideTmdbApi() {
@@ -67,25 +53,28 @@ function hideTmdbApi() {
 btnHuluEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'hulu';
-    
+    movieListEl.innerHTML = '';
     getMotNAPI();
     hideTmdbApi();
 })
 btnNetflixEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'netflix';
+    movieListEl.innerHTML = '';
     getMotNAPI();
     hideTmdbApi();
 })
 btnPrimeEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'prime';
+    movieListEl.innerHTML = '';
     getMotNAPI();
     hideTmdbApi();
 })
 btnHboEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'hbo';
+    movieListEl.innerHTML = '';
     getMotNAPI();
     hideTmdbApi();
 })
