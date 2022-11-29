@@ -4,7 +4,6 @@ var btnHuluEl = document.querySelector('#btn-hulu');
 var btnNetflixEl = document.querySelector('#btn-netflix');
 var btnPrimeEl = document.querySelector('#btn-prime');
 var btnHboEl = document.querySelector('#btn-hbo');
-var movieEl = document.querySelector(".movie-card");
 var movieTitleEl = document.querySelector('#movie-title');
 var moviePosterEl = document.querySelector('#movie-poster');
 var movieDescriptionEl = document.querySelector('#movie-description');
@@ -14,9 +13,12 @@ var iconNetflixEl = document.querySelector('#icon-netflix');
 var iconHuluEl = document.querySelector('#icon-hulu');
 var iconPrimeEl = document.querySelector('#icon-prime');
 var iconHBOEl = document.querySelector('#icon-HBO');
+
+var flexContainerEl = document.querySelector(".flex-container");
+
 var movie = '';
-var smashedBtnEl = document.querySelector('#get-smashed-button');
-var drinkCardEl = document.querySelector('.drink-card');
+
+
 
 var streamingService = '';
 
@@ -30,10 +32,6 @@ var hboScreen = $('#hbo-screen').css('display', 'block');
         var apiKey = "b17d58183a19638723e4cef78264f6c2";
         var tmdbQueryUrl = "https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27";
 
-        var movieTitle = document.createElement("h2");
-        var moviePoster = document.createElement("img");
-        var movieDescription = document.createElement("p");
-        var movieYear = document.createElement("p");
 
         fetch(tmdbQueryUrl)
         .then(function (response){
@@ -43,6 +41,17 @@ var hboScreen = $('#hbo-screen').css('display', 'block');
             console.log(movieData);
 
             for (var i = 0; i < 10; i++) {
+                var movieEl = document.createElement('section');
+                movieEl.setAttribute('class', 'movie-card');
+
+                var movieTitle = document.createElement("h2");
+                movieTitle.setAttribute('id', 'movie-title');
+                var moviePoster = document.createElement("img");
+                moviePoster.setAttribute('id', 'movie-poster-img');
+                var movieDescription = document.createElement("p");
+                movieDescription.setAttribute('id', 'movie-description');
+                var movieYear = document.createElement("p");
+                movieYear.setAttribute('id', 'movie-year');
                 var posterImg = "https://image.tmdb.org/t/p/w185/" + movieData.results[i].poster_path;
 
                 moviePoster.setAttribute("src", posterImg);
@@ -51,11 +60,16 @@ var hboScreen = $('#hbo-screen').css('display', 'block');
                 movieYear.textcontent = movieData.results[i].release_date;
             
                 console.log(movieTitle);
+                console.log(i);
 
+                flexContainerEl.appendChild(movieEl);
                 movieEl.appendChild(movieTitle);
                 movieEl.appendChild(moviePoster);
                 movieEl.appendChild(movieDescription);
                 movieEl.appendChild(movieYear);
+                
+                generateGetSmashedBtn(movieEl);
+
             }
             
         })
@@ -165,12 +179,25 @@ function getMotNAPI() {
 // }
 
 // Cocktail API
-smashedBtnEl.addEventListener('click', function (event) {
-    event.preventDefault();
-    getCocktailDB();   
-})
+function generateGetSmashedBtn(movieEl){
 
-function getCocktailDB() {
+    var smashedContainerEl = document.createElement('div');
+    smashedContainerEl.setAttribute('class', 'get-smashed-container');
+
+    var smashedBtnEl = document.createElement('button');
+    smashedBtnEl.setAttribute('id', 'get-smashed-button');
+    smashedBtnEl.textContent = "Get Smashed?";
+
+    movieEl.appendChild(smashedContainerEl);
+    smashedContainerEl.appendChild(smashedBtnEl);
+
+    smashedBtnEl.addEventListener('click', function (event) {
+        event.preventDefault();
+        getCocktailDB(movieEl);   
+    })
+}
+
+function getCocktailDB(movieEl) {
     var cocktails = ['bloody_mary', 'bloody_maria', 'bleeding_surgeon', 'zombie', 'shark_attack', 'vampiro', 'berry_deadly', 'death_in_the_afternoon', 'hot_chocolate_to_die_for', 'bruised_heart'];
 
     var random = Math.floor(Math.random() * cocktails.length);
@@ -189,25 +216,33 @@ function getCocktailDB() {
         .then(function (cocktailData) {
             console.log(cocktailData);
 
+            // var movieCardEl = document.querySelector('.movie-card');
+
+            var drinkCardEl = document.createElement('div');
+            drinkCardEl.setAttribute('class', 'drink-card');
+            
             var drinkImg = cocktailData.drinks[0].strDrinkThumb;
 
             console.log(cocktailData.drinks[0].strDrinkThumb);
 
             drinkThumbNail.setAttribute('src', drinkImg);
             drinkName.textContent = cocktailData.drinks[0].strDrink;
+            drinkName.setAttribute('id', 'drink-name');
             drinkIngredients.textContent = 'Ingredients: ' + cocktailData.drinks[0].strIngredient1 + ', ' + cocktailData.drinks[0].strIngredient2 + ', ' + cocktailData.drinks[0].strIngredient3 + ', ' + cocktailData.drinks[0].strIngredient4 + ', ' + cocktailData.drinks[0].strIngredient5 + ', ' + cocktailData.drinks[0].strIngredient6 + ', ' + cocktailData.drinks[0].strIngredient7 + ', ' + cocktailData.drinks[0].strIngredient8 + ', ' + cocktailData.drinks[0].strIngredient9 + ', ' + cocktailData.drinks[0].strIngredient10 + ', ' + cocktailData.drinks[0].strIngredient11 + ', ' + cocktailData.drinks[0].strIngredient12;
-
-            drinkInstructions.textContent = 'Insctructions: ' + cocktailData.drinks[0].strInstructions;
+            drinkIngredients.setAttribute('id', 'ingredients');
+            drinkInstructions.textContent = 'Instructions: ' + cocktailData.drinks[0].strInstructions;
+            drinkInstructions.setAttribute('id', 'instructions');
 
             console.log(drinkName);
             console.log(drinkIngredients);
             console.log(drinkInstructions);
 
+            movieEl.appendChild(drinkCardEl);
             drinkCardEl.appendChild(drinkThumbNail);
             drinkCardEl.appendChild(drinkName);
             drinkCardEl.appendChild(drinkIngredients);
             drinkCardEl.appendChild(drinkInstructions);
-
+           
 
         })
 
