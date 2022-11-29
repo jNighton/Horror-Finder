@@ -7,57 +7,19 @@
 
 body {
     background: linear-gradient(to bottom right, black, #400000);
+
     background-repeat: no-repeat;
     min-height: 100vh;
     height: 100%;
     padding: 10px;
     display: flexbox;
 }
+
 header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-/* search bar styling */
-.container{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-form {
-    background: #fff;
-    width: 500px;
-    height: 55px;
-    display: flex;
-    border-radius: 40px;
-}
-
-form input{
-    flex: 1;
-    border: none;
-    outline: none;
-    color: black;
-}
-
-form button{
-    background: rgb(212, 35, 64);
-    padding: 10px 50px;
-    border: none;
-    border-top-right-radius: 40px ;
-    border-bottom-right-radius: 40px;
-    outline: none;
-    color: rgb(244, 234, 234);
-    letter-spacing: 1px;
-    cursor: pointer;
-}
-form .fa-search{
-    align-self: center;
-    padding: 10px 20px;
-    color: #777;
-}
-/*  */
 
 .movie-section{
     display: flex;
@@ -68,8 +30,8 @@ form .fa-search{
     display: flex;
     justify-content: center;
     margin: 0;
-
 }
+
 .service-btn button{
     border-radius: 50%;
     background-color: transparent;
@@ -77,19 +39,16 @@ form .fa-search{
     border: 0px;
     width: 50px
 }
+
 .service-btn img {
     width: 50px;
 }
-
 
 .logo img {
     flex-basis: 400px;
     flex-grow: 0;
     flex-shrink: 1;
-
-
 }
-
 
 .movie-card {
     font-size: medium;
@@ -102,36 +61,25 @@ form .fa-search{
     padding: 0px 20px;
 }
 
-
-#movie-poster img {
-    width: 100px;
+#movie-poster-img {
     float: left;
-    margin: 10px;
 }
+
 #movie-title {
     color: white;
-<<<<<<< Updated upstream
-    font-size: medium;
-=======
-
->>>>>>> Stashed changes
     font-weight: bold;
     margin-left: 10px;
-
 }
+
 .drink-card {
-    display: none;
     font-size: medium;
     color: white;
     flex-basis: 1400px;
     flex-grow: 0;
-<<<<<<< Updated upstream
-    margin: 0px 40px 0px 40px;
-=======
     margin: 160px 0px 20px 0px;
     width:fit-content;
 
->>>>>>> Stashed changes
+    display: block;
 }
 
 .flex-container {
@@ -141,11 +89,12 @@ form .fa-search{
   justify-content: center;
   
 }
+
 #streaming-tag {
     background-color: rgba(0,0,0,.6);
 }
 
-#get-smashed-button {
+#get-smashed-container {
     background-color: rgba(0,0,0,.6);
     color: white;
     max-height: 40vh;
@@ -154,10 +103,10 @@ form .fa-search{
     padding: 30px;
     margin: 0px 40px 0px 40px;
     display: flex;
-    justify-content: center;
-    
+    justify-content: space-around;
 }
-#get-smashed-generator {
+
+#get-smashed-button {
     background: rgb(212, 35, 64);
     padding: 10px 50px;
     border: none;
@@ -172,7 +121,28 @@ form .fa-search{
     position: relative;
     bottom: -85px;
 }
+
 .streaming-btns img {
     width: 30px;
-
 }
+
+/* element created in javascipt for drink card */
+img {
+    width: 150px;
+    float: left;
+
+    padding-right: 10px;
+}
+
+/* element created in javascipt for drink card */
+h3 {
+    color: white;
+    font-size: 22pt;
+}
+
+/* element created in javascipt for drink card */
+p {
+    padding-bottom: 10px;
+}
+
+/* streaming service page styling */

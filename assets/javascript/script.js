@@ -26,7 +26,7 @@ var hboScreen = $('#hbo-screen').css('display', 'block');
         .then(function (response){
             return response.json();
         })
-        .then(function (movieData){
+        .then(function (movieData) {
             console.log(movieData);
 
             for (var i = 0; i < 10; i++) {
@@ -47,7 +47,7 @@ var hboScreen = $('#hbo-screen').css('display', 'block');
                 movieTitle.textContent = movieData.results[i].title;
                 movieDescription.textContent = movieData.results[i].overview;
                 movieYear.textcontent = movieData.results[i].release_date;
-            
+
                 console.log(movieTitle);
                 console.log(i);
 

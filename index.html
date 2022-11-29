@@ -1,82 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Horror Finder</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css"/>
-  </head>
 
-  <body>
-  
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Horror Finder</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body>
+
+
+  <div id="main-screen">
     <header class="logo">
-    <img src="assets/images/slashed-and-smashed-horizontal-1.png" alt="logo">
+      <img src="assets/images/slashed-and-smashed-horizontal-1.png" alt="slashed and smashed logo">
     </header>
 
-
-    <section">
-      <div class="container">
-        <form>
-          <i class="fa fa-search"></i>
-
-          <input type="text" id="movie" placeholder="type in your favorite horror movie 🧟‍♂️">
-          
-          <button id = "submit" type="submit"></submit>Search</button>
-        </form>
+      <div class="flex-container">
+        <p id="streaming-tag">Select by streaming services. 👻</p>
       </div>
-
-      <br>
-
-    <div class="flex-container">
-      <p id="streaming-tag">Select by streaming services. 👻</p>
-    </div>
 
       <div class="service-btn">
-        <button type="button" id="hulu">
-          <img src="assets/images/hulu-logo.png" alt="hulu-logo">
+          <button type="button" id="btn-hulu">
+            <img src="assets/images/hulu-logo.png" alt="hulu-logo">
           </button>
-        <button type="button">
-        <img src="assets/images/netflix-logo.png" alt="netflix-logo">
-        </button>
-        <button type="button">
-          <img src="assets/images/prime-logo.png" alt="prime-logo">
-        </button>
-        <button type="button">
-          <img src="assets/images/hbo-logo.png" alt="HBO-logo">
-        </button>
+          <button type="button" id="btn-netflix">
+            <img src="assets/images/netflix-logo.png" alt="netflix-logo">
+          </button>
+          <button type="button" id="btn-prime">
+            <img src="assets/images/prime-logo.png" alt="prime-logo">
+          </button>
+          <button type="button" id="btn-hbo">
+            <img src="assets/images/hbo-logo.png" alt="HBO-logo">
+          </button>
 
+        </div>
       </div>
-      
-    </section>
-  <div class="flex-container">
-    <section class="movie-card">
-      <h2 id="movie-title">Title</h2>
-      <div id="movie-poster"><img src="assets\images\placeholder.jpg" alt=""></div>
-      <p id="movie-description">description</p>
-      <p id="movie-year">year</p>
-      <div class="streaming-btns">
-        <img src="./assets/images/netflix-logo.png" alt="netflix" class="float-right" id="icon-netflix"/>
-        <img src="./assets/images/hulu-logo.png" alt="hulu" class="float-right" id="icon-hulu"/>
-        <img src="./assets/images/prime-logo.png" alt="amazon prime" class="float-right" id="icon-prime"/>
-        <img src="./assets/images/hbo-logo.png" alt="HBO" class="float-right" id="icon-hbo"/>
-    </div>
-    </section>
-    <div id="get-smashed-button">
-      <button type="button" id="get-smashed-generator">Get Smashed?</button>
-    </div>
-    <section class="drink-card">
-        <h2 id="drink-name"></h2>
-        <div id="drink-image"></div>
-        <div id="ingredients"></div>
-        <div id="instructions"></div>
-    </section>
-  </div>
-    <script src="./assets/javascript/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-    <!-- script for maginfying glass logo in search bar -->
-    <script src="https://kit.fontawesome.com/67386b82fb.js" crossorigin="anonymous"></script>
-  </body>
+    </section>
+
+    <div class="flex-container">
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="./assets/javascript/script.js"></script>
+
+  <!-- script for maginfying glass logo in search bar -->
+  <script src="https://kit.fontawesome.com/67386b82fb.js" crossorigin="anonymous"></script>
+</body>
+
 </html>
