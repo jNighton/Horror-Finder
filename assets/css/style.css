@@ -118,6 +118,15 @@ header {
     cursor: pointer;
 }
 
+#get-smashed-button:hover {
+    background-color: #a30625;
+    transform: scale(1.03);
+}
+
+#get-smashed-button:active {
+    transform: scale(.98);
+}
+
 .streaming-btns {
     position: relative;
     bottom: -85px;
