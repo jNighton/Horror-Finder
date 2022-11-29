@@ -18,8 +18,6 @@ var flexContainerEl = document.querySelector(".flex-container");
 
 var movie = '';
 
-
-
 var streamingService = '';
 
 var mainScreen = $('#main-screen').css('display', 'block');
@@ -35,10 +33,12 @@ var hboScreen = $('#hbo-screen').css('display', 'block');
 
         fetch(tmdbQueryUrl)
         .then(function (response){
+
             return response.json();
         })
-        .then(function (movieData){
+        .then(function (movieData) {
             console.log(movieData);
+
 
             for (var i = 0; i < 10; i++) {
                 var movieEl = document.createElement('section');
@@ -52,13 +52,14 @@ var hboScreen = $('#hbo-screen').css('display', 'block');
                 movieDescription.setAttribute('id', 'movie-description');
                 var movieYear = document.createElement("p");
                 movieYear.setAttribute('id', 'movie-year');
+
                 var posterImg = "https://image.tmdb.org/t/p/w185/" + movieData.results[i].poster_path;
 
                 moviePoster.setAttribute("src", posterImg);
                 movieTitle.textContent = movieData.results[i].title;
                 movieDescription.textContent = movieData.results[i].overview;
                 movieYear.textcontent = movieData.results[i].release_date;
-            
+
                 console.log(movieTitle);
                 console.log(i);
 
@@ -71,39 +72,37 @@ var hboScreen = $('#hbo-screen').css('display', 'block');
                 generateGetSmashedBtn(movieEl);
 
             }
-            
+
         })
-    
-    }
+
+}
 
 
 // Streaming Service Buttons section
 btnHuluEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'hulu'
-    mainScreen.css('display', 'none');
-    huluScreen.css('display', 'block');
     getMotNAPI()
 })
 btnNetflixEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'netflix'
-    mainScreen.css('display', 'none');
-    netflixScreen.css('display', 'block');
+    // mainScreen.css('display', 'none');
+    // netflixScreen.css('display', 'block');
     getMotNAPI()
 })
 btnPrimeEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'prime'
-    mainScreen.css('display', 'none');
-    primeScreen.css('display', 'block');
+    // mainScreen.css('display', 'none');
+    // primeScreen.css('display', 'block');
     getMotNAPI()
 })
 btnHboEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'hbo'
-    mainScreen.css('display', 'none');
-    hboScreen.css('display', 'block');
+    // mainScreen.css('display', 'none');
+    // hboScreen.css('display', 'block');
     getMotNAPI()
 })
 
@@ -125,17 +124,33 @@ function getMotNAPI() {
         })
         .then(function (movieData) {
             console.log(movieData)
-            movieTitleEl ='Title: '+movieData.results[0].title 
-            movieDescriptionEl ='Destcription: '+movieData.results[0].overview
-            movieYearEl ='Year: '+movieData.results[0].year 
-            var movieImg = movieData.results[0].posterURLs.original
 
-            moviePosterEl.setAttribute('src', movieImg)
+            var movieListContainer = document.getElementById('#movie-list-container')
+            movieListContainer.innerHTML = "";
 
-            console.log(movieTitleEl)
-            console.log(movieDescriptionEl)
-            console.log(movieYearEl)
-            console.log(movieImg)
+            for (var i = 0; i < 7; i++) {
+                var title = document.createElement("h2");
+                var poster = document.createElement("img");
+                var description = document.createElement("p");
+                var year = document.createElement("p");
+
+                title.innerHTML = 'Title: ' + movieData.results[i].title
+                description.innerHTML = 'Destcription: ' + movieData.results[i].overview
+                year.innerHTML = 'Year: ' + movieData.results[i].year
+                var movieImg = movieData.results[i].posterURLs.original
+
+                poster.setAttribute('src', movieImg)
+
+                console.log(movieTitleEl)
+                console.log(movieDescriptionEl)
+                console.log(movieYearEl)
+                console.log(movieImg)
+
+                movieListCpntainer.appendChild(title)
+                movieListCpntainer.appendChild(description)
+                movieListCpntainer.appendChild(year)
+                movieListCpntainer.appendChild(movieImg)
+            }
         })
 }
 
@@ -179,6 +194,7 @@ function getMotNAPI() {
 // }
 
 // Cocktail API
+
 function generateGetSmashedBtn(movieEl){
 
     var smashedContainerEl = document.createElement('div');
@@ -248,7 +264,7 @@ function getCocktailDB(movieEl) {
 
 
 
-    }
+}
 
-    getTmdbAPI();
+getTmdbAPI();
 
