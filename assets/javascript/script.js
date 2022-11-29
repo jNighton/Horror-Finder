@@ -1,4 +1,5 @@
 // Variables Declaired Here
+var logoEl = document.querySelector('.logo');
 var btnHuluEl = document.querySelector('#btn-hulu');
 var btnNetflixEl = document.querySelector('#btn-netflix');
 var btnPrimeEl = document.querySelector('#btn-prime');
@@ -7,6 +8,10 @@ var movieListEl = document.querySelector('.movie-list-container');
 var flexContainerEl = document.querySelector(".flex-container");
 var movie = '';
 var streamingService = '';
+
+logoEl.addEventListener('click', function (){
+    location.reload();
+});
 
 function getTmdbAPI() {
     // apiKey = "b17d58183a19638723e4cef78264f6c2";
