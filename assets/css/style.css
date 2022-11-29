@@ -76,14 +76,14 @@ header {
     color: white;
     flex-basis: 1400px;
     flex-grow: 0;
-    margin: 160px 0px 20px 0px;
+    margin: 170px 0px 20px 0px;
     width:fit-content;
 
     display: block;
 }
 
-.flex-container {
-    display: flex;
+.flex-container, .streaming-tag-cont {
+  display: flex;
   flex-wrap: wrap;
   font-size: 30px;
   justify-content: center;
@@ -92,6 +92,7 @@ header {
 
 #streaming-tag {
     background-color: rgba(0,0,0,.6);
+    font-size: 25px;
 }
 
 #get-smashed-container {
