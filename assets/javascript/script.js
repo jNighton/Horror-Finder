@@ -94,8 +94,10 @@ function getMotNAPI() {
             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
         }
     };
+    var randomPage = Math.floor(Math.random() * 23);
+    console.log(randomPage);
 
-    fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + streamingService + '&type=movie&genre=27&page=1&output_language=en&language=en', options)
+    fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + streamingService + '&type=movie&genre=27&page=' + [randomPage] + '&output_language=en&language=en', options)
 
         .then(function (response) {
             return response.json();
@@ -117,8 +119,8 @@ function getMotNAPI() {
                 var movieImg = streamMovieData.results[i].posterURLs.original;
 
                 moviePosterEl.setAttribute('src', movieImg);
-                movieTitleEl.innerHTML = `Title: ${streamMovieData.results[i].title}`;
-                movieDescriptionEl.innerHTML = `Description: ${streamMovieData.results[i].overview}`;
+                movieTitleEl.innerHTML = `${streamMovieData.results[i].title}`;
+                movieDescriptionEl.innerHTML = `${streamMovieData.results[i].overview}`;
                 movieYearEl.innerHTML = `Year: ${streamMovieData.results[i].year}`;
 
 
