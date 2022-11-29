@@ -20,76 +20,75 @@ var drinkCardEl = document.querySelector('.drink-card');
 
 var streamingService = '';
 
-var mainScreen = $('#main-screen').css('display', 'block');
-var huluScreen = $('#hulu-screen').css('display', 'block');
-var netflixScreen = $('#netflix-screen').css('display', 'block');
-var primeScreen = $('#prime-screen').css('display', 'block');
-var hboScreen = $('#hbo-screen').css('display', 'block');
-    
-    function getTmdbAPI(){
-        var apiKey = "b17d58183a19638723e4cef78264f6c2";
-        var tmdbQueryUrl = "https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27";
+// var mainScreen = $('#main-screen').css('display', 'block');
+// var huluScreen = $('#hulu-screen').css('display', 'block');
+// var netflixScreen = $('#netflix-screen').css('display', 'block');
+// var primeScreen = $('#prime-screen').css('display', 'block');
+// var hboScreen = $('#hbo-screen').css('display', 'block');
 
-        var movieTitle = document.createElement("h2");
-        var moviePoster = document.createElement("img");
-        var movieDescription = document.createElement("p");
-        var movieYear = document.createElement("p");
+function getTmdbAPI() {
+    var apiKey = "b17d58183a19638723e4cef78264f6c2";
+    var tmdbQueryUrl = "https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27";
 
-        fetch(tmdbQueryUrl)
-        .then(function (response){
+    var movieTitle = document.createElement("h2");
+    var moviePoster = document.createElement("img");
+    var movieDescription = document.createElement("p");
+    var movieYear = document.createElement("p");
+
+    fetch(tmdbQueryUrl)
+        .then(function (response) {
             return response.json();
         })
-        .then(function (movieData){
+        .then(function (movieData) {
             console.log(movieData);
 
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < 8; i++) {
                 var posterImg = "https://image.tmdb.org/t/p/w185/" + movieData.results[i].poster_path;
 
                 moviePoster.setAttribute("src", posterImg);
                 movieTitle.textContent = movieData.results[i].title;
                 movieDescription.textContent = movieData.results[i].overview;
                 movieYear.textcontent = movieData.results[i].release_date;
-            
+
                 console.log(movieTitle);
 
                 movieEl.appendChild(movieTitle);
                 movieEl.appendChild(moviePoster);
                 movieEl.appendChild(movieDescription);
                 movieEl.appendChild(movieYear);
+
             }
-            
+
         })
-    
-    }
+
+}
 
 
 // Streaming Service Buttons section
 btnHuluEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'hulu'
-    mainScreen.css('display', 'none');
-    huluScreen.css('display', 'block');
     getMotNAPI()
 })
 btnNetflixEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'netflix'
-    mainScreen.css('display', 'none');
-    netflixScreen.css('display', 'block');
+    // mainScreen.css('display', 'none');
+    // netflixScreen.css('display', 'block');
     getMotNAPI()
 })
 btnPrimeEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'prime'
-    mainScreen.css('display', 'none');
-    primeScreen.css('display', 'block');
+    // mainScreen.css('display', 'none');
+    // primeScreen.css('display', 'block');
     getMotNAPI()
 })
 btnHboEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'hbo'
-    mainScreen.css('display', 'none');
-    hboScreen.css('display', 'block');
+    // mainScreen.css('display', 'none');
+    // hboScreen.css('display', 'block');
     getMotNAPI()
 })
 
@@ -111,17 +110,33 @@ function getMotNAPI() {
         })
         .then(function (movieData) {
             console.log(movieData)
-            movieTitleEl ='Title: '+movieData.results[0].title 
-            movieDescriptionEl ='Destcription: '+movieData.results[0].overview
-            movieYearEl ='Year: '+movieData.results[0].year 
-            var movieImg = movieData.results[0].posterURLs.original
 
-            moviePosterEl.setAttribute('src', movieImg)
+            var movieListContainer = document.getElementById('#movie-list-container')
+            movieListContainer.innerHTML = "";
 
-            console.log(movieTitleEl)
-            console.log(movieDescriptionEl)
-            console.log(movieYearEl)
-            console.log(movieImg)
+            for (var i = 0; i < 7; i++) {
+                var title = document.createElement("h2");
+                var poster = document.createElement("img");
+                var description = document.createElement("p");
+                var year = document.createElement("p");
+
+                title.innerHTML = 'Title: ' + movieData.results[i].title
+                description.innerHTML = 'Destcription: ' + movieData.results[i].overview
+                year.innerHTML = 'Year: ' + movieData.results[i].year
+                var movieImg = movieData.results[i].posterURLs.original
+
+                poster.setAttribute('src', movieImg)
+
+                console.log(movieTitleEl)
+                console.log(movieDescriptionEl)
+                console.log(movieYearEl)
+                console.log(movieImg)
+
+                movieListCpntainer.appendChild(title)
+                movieListCpntainer.appendChild(description)
+                movieListCpntainer.appendChild(year)
+                movieListCpntainer.appendChild(movieImg)
+            }
         })
 }
 
@@ -167,7 +182,7 @@ function getMotNAPI() {
 // Cocktail API
 smashedBtnEl.addEventListener('click', function (event) {
     event.preventDefault();
-    getCocktailDB();   
+    getCocktailDB();
 })
 
 function getCocktailDB() {
@@ -213,7 +228,7 @@ function getCocktailDB() {
 
 
 
-    }
+}
 
-    getTmdbAPI();
+getTmdbAPI();
 
