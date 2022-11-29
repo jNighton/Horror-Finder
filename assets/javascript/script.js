@@ -1,4 +1,5 @@
 // Variables Declaired Here
+
 var btnHuluEl = document.querySelector('#btn-hulu');
 var btnNetflixEl = document.querySelector('#btn-netflix');
 var btnPrimeEl = document.querySelector('#btn-prime');

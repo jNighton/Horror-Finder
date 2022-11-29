@@ -19,48 +19,6 @@ header {
     justify-content: center;
 }
 
-/* search bar styling */
-
-.container{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-form {
-    background: #fff;
-    width: 500px;
-    height: 55px;
-    display: flex;
-    border-radius: 40px;
-}
-
-form input{
-    flex: 1;
-    border: none;
-    outline: none;
-    color: black;
-}
-
-form button{
-    background: rgb(212, 35, 64);
-    padding: 10px 50px;
-    border: none;
-    border-top-right-radius: 40px ;
-    border-bottom-right-radius: 40px;
-    outline: none;
-    color: rgb(244, 234, 234);
-    letter-spacing: 1px;
-    cursor: pointer;
-}
-
-form .fa-search{
-    align-self: center;
-    padding: 10px 20px;
-    color: #777;
-}
-
 .movie-section{
     display: flex;
     justify-content: center;
