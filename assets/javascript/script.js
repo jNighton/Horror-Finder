@@ -145,6 +145,7 @@ function generateGetSmashedBtn(movieEl){
     smashedBtnEl.addEventListener('click', function (event) {
         event.preventDefault();
         getCocktailDB(movieEl);   
+        smashedBtnEl.setAttribute('style', 'display: none');
     })
 }
 
