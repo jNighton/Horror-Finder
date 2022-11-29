@@ -7,7 +7,7 @@
 
 body {
     background: linear-gradient(to bottom right, black, #400000);
-    background-repeat: no-repeat;
+    /*background-repeat: no-repeat;*/
     height: 100%;
     display: flexbox;
 }
@@ -99,10 +99,8 @@ form .fa-search{
     margin: 20px 40px 0px 40px;
 }
 
-#movie-poster img {
-    width: 100px;
+#movie-poster-img {
     float: left;
-    margin: 10px;
 }
 
 #movie-title {
@@ -171,7 +169,7 @@ form .fa-search{
 img {
     width: 150px;
     float: left;
-    padding-top: 25px;
+
     padding-right: 10px;
 }
 
