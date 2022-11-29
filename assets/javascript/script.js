@@ -11,19 +11,13 @@ var movie = '';
 
 var streamingService = '';
 
-var mainScreen = $('#main-screen').css('display', 'block');
-var huluScreen = $('#hulu-screen').css('display', 'block');
-var netflixScreen = $('#netflix-screen').css('display', 'block');
-var primeScreen = $('#prime-screen').css('display', 'block');
-var hboScreen = $('#hbo-screen').css('display', 'block');
-    
-    function getTmdbAPI(){
-        // apiKey = "b17d58183a19638723e4cef78264f6c2";
-        var tmdbQueryUrl = "https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27";
+function getTmdbAPI() {
+    // apiKey = "b17d58183a19638723e4cef78264f6c2";
+    var tmdbQueryUrl = "https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27";
 
 
-        fetch(tmdbQueryUrl)
-        .then(function (response){
+    fetch(tmdbQueryUrl)
+        .then(function (response) {
             return response.json();
         })
         .then(function (movieData) {
@@ -56,20 +50,24 @@ var hboScreen = $('#hbo-screen').css('display', 'block');
                 movieEl.appendChild(moviePoster);
                 movieEl.appendChild(movieDescription);
                 movieEl.appendChild(movieYear);
-                
+
                 generateGetSmashedBtn(movieEl);
 
             }
-            
-        })
-    
-    }
 
+        })
+
+}
+
+function hideTmdbApi() {
+    flexContainerEl.setAttribute('style', 'display: none');
+}
 
 // Streaming Service Buttons section
 btnHuluEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'hulu';
+    
     getMotNAPI();
     hideTmdbApi();
 })
@@ -92,12 +90,8 @@ btnHboEl.addEventListener('click', function (event) {
     hideTmdbApi();
 })
 
-function hideTmdbApi() {
-    flexContainerEl.setAttribute('style', 'display: none');
-}
 
-
-// Movie Of The Night API 
+// Movie Of The Night API
 function getMotNAPI() {
     const options = {
         method: 'GET',
@@ -112,61 +106,62 @@ function getMotNAPI() {
         .then(function (response) {
             return response.json();
         })
-        .then(function (movieData) {
-            console.log(movieData)
+        .then(function (streamMovieData) {
+            console.log(streamMovieData);
 
             for (var i = 0; i < 7; i++) {
+                var movieEl = document.createElement('section');
+                movieEl.setAttribute('class', 'movie-card');
+                var moviePosterEl = document.createElement('img');
+                moviePosterEl.setAttribute('id', 'movie-poster-img');
+                var movieTitleEl = document.createElement('h2');
+                movieTitleEl.setAttribute('id', 'movie-title');
+                var movieDescriptionEl = document.createElement('p');
+                movieDescriptionEl.setAttribute('id', 'movie-description');
+                var movieYearEl = document.createElement('p');
+                movieYearEl.setAttribute('id', 'movie-year');
+                var movieImg = streamMovieData.results[i].posterURLs.original;
 
-            var movieEl = document.createElement('section');
-            movieEl.setAttribute('class', 'movie-card');
+                moviePosterEl.setAttribute('src', movieImg);
+                movieTitleEl.innerHTML = `Title: ${streamMovieData.results[i].title}`;
+                movieDescriptionEl.innerHTML = `Description: ${streamMovieData.results[i].overview}`;
+                movieYearEl.innerHTML = `Year: ${streamMovieData.results[i].year}`;
 
-            var movieTitleEl = document.createElement("h2");
-            movieTitleEl.setAttribute('id', 'movie-title');
-            var moviePosterEl = document.createElement("img");
-            moviePosterEl.setAttribute('id', 'movie-poster-img');
-            var movieDescriptionEl = document.createElement("p");
-            movieDescriptionEl.setAttribute('id', 'movie-description');
-            var movieYearEl = document.createElement("p");
-            movieYearEl.setAttribute('id', 'movie-year');
-            var movieImg = movieData.results[i].posterURLs.original;
 
-            moviePosterEl.setAttribute('src', movieImg);
-            movieTitleEl ='Title: '+ movieData.results[i].title ;
-            movieDescriptionEl ='Description: ' + movieData.results[i].overview;
-            movieYearEl ='Year: ' + movieData.results[i].year;
-            
+                console.log(movieTitleEl);
+                console.log(movieTitleEl);
+                console.log(movieTitleEl);
+                console.log(movieTitleEl);
 
-            console.log(movieTitleEl);
-                console.log(i);
 
-                movieListEl.appendChild(movieEl);
-                movieEl.appendChild(movieTitleEl);
-                movieEl.appendChild(movieImg);
-                movieEl.appendChild(movieDescriptionEl);
-                movieEl.appendChild(movieYearEl);
-                
+                movieListEl.appendChild(movieEl)
+                movieEl.appendChild(moviePosterEl)
+                movieEl.appendChild(movieTitleEl)
+                movieEl.appendChild(movieDescriptionEl)
+                movieEl.appendChild(movieYearEl)
+
+
                 generateGetSmashedBtn(movieEl);
-
             }
         })
 }
 
 // Cocktail API
-function generateGetSmashedBtn(movieEl){
+function generateGetSmashedBtn(movieEl) {
 
     var smashedContainerEl = document.createElement('div');
     smashedContainerEl.setAttribute('class', 'get-smashed-container');
 
     var smashedBtnEl = document.createElement('button');
     smashedBtnEl.setAttribute('id', 'get-smashed-button');
-    smashedBtnEl.textContent = "Get Smashed?";
+    smashedBtnEl.textContent = 'Get Smashed?';
 
     movieEl.appendChild(smashedContainerEl);
     smashedContainerEl.appendChild(smashedBtnEl);
 
     smashedBtnEl.addEventListener('click', function (event) {
         event.preventDefault();
-        getCocktailDB(movieEl);   
+        getCocktailDB(movieEl);
         smashedBtnEl.setAttribute('style', 'display: none');
     })
 }
@@ -194,7 +189,7 @@ function getCocktailDB(movieEl) {
 
             var drinkCardEl = document.createElement('div');
             drinkCardEl.setAttribute('class', 'drink-card');
-            
+
             var drinkImg = cocktailData.drinks[0].strDrinkThumb;
 
             console.log(cocktailData.drinks[0].strDrinkThumb);
@@ -216,10 +211,10 @@ function getCocktailDB(movieEl) {
             drinkCardEl.appendChild(drinkName);
             drinkCardEl.appendChild(drinkIngredients);
             drinkCardEl.appendChild(drinkInstructions);
-           
+
 
         })
 
-    }
+}
 
 getTmdbAPI();
