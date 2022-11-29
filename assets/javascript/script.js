@@ -4,15 +4,6 @@ var btnHuluEl = document.querySelector('#btn-hulu');
 var btnNetflixEl = document.querySelector('#btn-netflix');
 var btnPrimeEl = document.querySelector('#btn-prime');
 var btnHboEl = document.querySelector('#btn-hbo');
-var movieTitleEl = document.querySelector('#movie-title');
-var moviePosterEl = document.querySelector('#movie-poster');
-var movieDescriptionEl = document.querySelector('#movie-description');
-var movieYearEl = document.querySelector('#movie-year');
-var movieRatingEl = document.querySelector('#movie-rating');
-var iconNetflixEl = document.querySelector('#icon-netflix');
-var iconHuluEl = document.querySelector('#icon-hulu');
-var iconPrimeEl = document.querySelector('#icon-prime');
-var iconHBOEl = document.querySelector('#icon-HBO');
 
 var flexContainerEl = document.querySelector(".flex-container");
 
@@ -33,12 +24,10 @@ var hboScreen = $('#hbo-screen').css('display', 'block');
 
         fetch(tmdbQueryUrl)
         .then(function (response){
-
             return response.json();
         })
         .then(function (movieData) {
             console.log(movieData);
-
 
             for (var i = 0; i < 10; i++) {
                 var movieEl = document.createElement('section');
@@ -52,7 +41,6 @@ var hboScreen = $('#hbo-screen').css('display', 'block');
                 movieDescription.setAttribute('id', 'movie-description');
                 var movieYear = document.createElement("p");
                 movieYear.setAttribute('id', 'movie-year');
-
                 var posterImg = "https://image.tmdb.org/t/p/w185/" + movieData.results[i].poster_path;
 
                 moviePoster.setAttribute("src", posterImg);
@@ -72,37 +60,39 @@ var hboScreen = $('#hbo-screen').css('display', 'block');
                 generateGetSmashedBtn(movieEl);
 
             }
-
+            
         })
-
-}
+    
+    }
 
 
 // Streaming Service Buttons section
 btnHuluEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'hulu'
+    mainScreen.css('display', 'none');
+    huluScreen.css('display', 'block');
     getMotNAPI()
 })
 btnNetflixEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'netflix'
-    // mainScreen.css('display', 'none');
-    // netflixScreen.css('display', 'block');
+    mainScreen.css('display', 'none');
+    netflixScreen.css('display', 'block');
     getMotNAPI()
 })
 btnPrimeEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'prime'
-    // mainScreen.css('display', 'none');
-    // primeScreen.css('display', 'block');
+    mainScreen.css('display', 'none');
+    primeScreen.css('display', 'block');
     getMotNAPI()
 })
 btnHboEl.addEventListener('click', function (event) {
     event.preventDefault();
     streamingService = 'hbo'
-    // mainScreen.css('display', 'none');
-    // hboScreen.css('display', 'block');
+    mainScreen.css('display', 'none');
+    hboScreen.css('display', 'block');
     getMotNAPI()
 })
 
@@ -124,77 +114,22 @@ function getMotNAPI() {
         })
         .then(function (movieData) {
             console.log(movieData)
+            movieTitleEl ='Title: '+movieData.results[0].title 
+            movieDescriptionEl ='Destcription: '+movieData.results[0].overview
+            movieYearEl ='Year: '+movieData.results[0].year 
+            var movieImg = movieData.results[0].posterURLs.original
 
-            var movieListContainer = document.getElementById('#movie-list-container')
-            movieListContainer.innerHTML = "";
+            moviePosterEl.setAttribute('src', movieImg)
 
-            for (var i = 0; i < 7; i++) {
-                var title = document.createElement("h2");
-                var poster = document.createElement("img");
-                var description = document.createElement("p");
-                var year = document.createElement("p");
-
-                title.innerHTML = 'Title: ' + movieData.results[i].title
-                description.innerHTML = 'Destcription: ' + movieData.results[i].overview
-                year.innerHTML = 'Year: ' + movieData.results[i].year
-                var movieImg = movieData.results[i].posterURLs.original
-
-                poster.setAttribute('src', movieImg)
-
-                console.log(movieTitleEl)
-                console.log(movieDescriptionEl)
-                console.log(movieYearEl)
-                console.log(movieImg)
-
-                movieListCpntainer.appendChild(title)
-                movieListCpntainer.appendChild(description)
-                movieListCpntainer.appendChild(year)
-                movieListCpntainer.appendChild(movieImg)
-            }
+            console.log(movieTitleEl)
+            console.log(movieDescriptionEl)
+            console.log(movieYearEl)
+            console.log(movieImg)
         })
 }
 
-// mainScreen.style.display = 'block';
-
-// if (streamingService === 'hulu') {
-
-// } else if (streamingService == 'netflix') {
-
-// } else if (streamingService == 'hbo') {
-
-// } else (streamingService == 'prime') 
-
-// submitEl.addEventListener('click', function(event){
-//     event.preventDefault();
-
-//     movie = $('#movie').val().trim()
-//     console.log(movie) 
-
-//     getTmdbAPI(movie);
-//     getMotNAPI(movie);
-//     // move this -> getCocktailDB();
-// })
-
-// function getTmdbAPI(movie){
-//     var apiKey = 'b17d58183a19638723e4cef78264f6c2';
-//     var tmdbQueryUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27';
-
-//     fetch(tmdbQueryUrl)
-//     .then(function (response){
-//         return response.json();
-//     })
-//     .then(function (movieData){
-//         console.log(movieData);
-//     })
-// }
-
-/*populate movie variables with api data
- 
-*/
-// }
 
 // Cocktail API
-
 function generateGetSmashedBtn(movieEl){
 
     var smashedContainerEl = document.createElement('div');
@@ -262,9 +197,6 @@ function getCocktailDB(movieEl) {
 
         })
 
+    }
 
-
-}
-
-getTmdbAPI();
-
+    getTmdbAPI();

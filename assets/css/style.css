@@ -7,8 +7,11 @@
 
 body {
     background: linear-gradient(to bottom right, black, #400000);
-    /*background-repeat: no-repeat;*/
+
+    background-repeat: no-repeat;
+    min-height: 100vh;
     height: 100%;
+    padding: 10px;
     display: flexbox;
 }
 
@@ -51,10 +54,11 @@ header {
     font-size: medium;
     background-color: rgba(0,0,0,.6);
     color: white;
-    max-height: 40vh;
+
     flex-basis: 1400px;
     flex-grow: 0;
     margin: 20px 40px 0px 40px;
+    padding: 0px 20px;
 }
 
 #movie-poster-img {
@@ -63,19 +67,18 @@ header {
 
 #movie-title {
     color: white;
-    /* font-size: large; */
     font-weight: bold;
     margin-left: 10px;
 }
 
 .drink-card {
     font-size: medium;
-    background-color: rgba(0,0,0,.6);
     color: white;
-    max-height: 40vh;
     flex-basis: 1400px;
     flex-grow: 0;
-    margin: 0px 40px 0px 40px;
+    margin: 160px 0px 20px 0px;
+    width:fit-content;
+
     display: block;
 }
 
