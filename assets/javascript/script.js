@@ -1,10 +1,10 @@
 // Variables Declaired Here
-
 var btnHuluEl = document.querySelector('#btn-hulu');
 var btnNetflixEl = document.querySelector('#btn-netflix');
 var btnPrimeEl = document.querySelector('#btn-prime');
 var btnHboEl = document.querySelector('#btn-hbo');
 
+var movieListEl = document.querySelector('.movie-list-container');
 var flexContainerEl = document.querySelector(".flex-container");
 
 var movie = '';
@@ -18,7 +18,7 @@ var primeScreen = $('#prime-screen').css('display', 'block');
 var hboScreen = $('#hbo-screen').css('display', 'block');
     
     function getTmdbAPI(){
-        var apiKey = "b17d58183a19638723e4cef78264f6c2";
+        // apiKey = "b17d58183a19638723e4cef78264f6c2";
         var tmdbQueryUrl = "https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27";
 
 
@@ -69,32 +69,32 @@ var hboScreen = $('#hbo-screen').css('display', 'block');
 // Streaming Service Buttons section
 btnHuluEl.addEventListener('click', function (event) {
     event.preventDefault();
-    streamingService = 'hulu'
-    mainScreen.css('display', 'none');
-    huluScreen.css('display', 'block');
-    getMotNAPI()
+    streamingService = 'hulu';
+    getMotNAPI();
+    hideTmdbApi();
 })
 btnNetflixEl.addEventListener('click', function (event) {
     event.preventDefault();
-    streamingService = 'netflix'
-    mainScreen.css('display', 'none');
-    netflixScreen.css('display', 'block');
-    getMotNAPI()
+    streamingService = 'netflix';
+    getMotNAPI();
+    hideTmdbApi();
 })
 btnPrimeEl.addEventListener('click', function (event) {
     event.preventDefault();
-    streamingService = 'prime'
-    mainScreen.css('display', 'none');
-    primeScreen.css('display', 'block');
-    getMotNAPI()
+    streamingService = 'prime';
+    getMotNAPI();
+    hideTmdbApi();
 })
 btnHboEl.addEventListener('click', function (event) {
     event.preventDefault();
-    streamingService = 'hbo'
-    mainScreen.css('display', 'none');
-    hboScreen.css('display', 'block');
-    getMotNAPI()
+    streamingService = 'hbo';
+    getMotNAPI();
+    hideTmdbApi();
 })
+
+function hideTmdbApi() {
+    flexContainerEl.setAttribute('style', 'display: none');
+}
 
 
 // Movie Of The Night API 
@@ -114,20 +114,42 @@ function getMotNAPI() {
         })
         .then(function (movieData) {
             console.log(movieData)
-            movieTitleEl ='Title: '+movieData.results[0].title 
-            movieDescriptionEl ='Destcription: '+movieData.results[0].overview
-            movieYearEl ='Year: '+movieData.results[0].year 
-            var movieImg = movieData.results[0].posterURLs.original
 
-            moviePosterEl.setAttribute('src', movieImg)
+            for (var i = 0; i < 7; i++) {
 
-            console.log(movieTitleEl)
-            console.log(movieDescriptionEl)
-            console.log(movieYearEl)
-            console.log(movieImg)
+            var movieEl = document.createElement('section');
+            movieEl.setAttribute('class', 'movie-card');
+
+            var movieTitleEl = document.createElement("h2");
+            movieTitleEl.setAttribute('id', 'movie-title');
+            var moviePosterEl = document.createElement("img");
+            moviePosterEl.setAttribute('id', 'movie-poster-img');
+            var movieDescriptionEl = document.createElement("p");
+            movieDescriptionEl.setAttribute('id', 'movie-description');
+            var movieYearEl = document.createElement("p");
+            movieYearEl.setAttribute('id', 'movie-year');
+            var movieImg = movieData.results[i].posterURLs.original;
+
+            moviePosterEl.setAttribute('src', movieImg);
+            movieTitleEl ='Title: '+ movieData.results[i].title ;
+            movieDescriptionEl ='Description: ' + movieData.results[i].overview;
+            movieYearEl ='Year: ' + movieData.results[i].year;
+            
+
+            console.log(movieTitleEl);
+                console.log(i);
+
+                movieListEl.appendChild(movieEl);
+                movieEl.appendChild(movieTitleEl);
+                movieEl.appendChild(movieImg);
+                movieEl.appendChild(movieDescriptionEl);
+                movieEl.appendChild(movieYearEl);
+                
+                generateGetSmashedBtn(movieEl);
+
+            }
         })
 }
-
 
 // Cocktail API
 function generateGetSmashedBtn(movieEl){
@@ -200,4 +222,4 @@ function getCocktailDB(movieEl) {
 
     }
 
-    getTmdbAPI();
+getTmdbAPI();
