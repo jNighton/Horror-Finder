@@ -4,21 +4,10 @@ var btnHuluEl = document.querySelector('#btn-hulu');
 var btnNetflixEl = document.querySelector('#btn-netflix');
 var btnPrimeEl = document.querySelector('#btn-prime');
 var btnHboEl = document.querySelector('#btn-hbo');
-var movieTitleEl = document.querySelector('#movie-title');
-var moviePosterEl = document.querySelector('#movie-poster');
-var movieDescriptionEl = document.querySelector('#movie-description');
-var movieYearEl = document.querySelector('#movie-year');
-var movieRatingEl = document.querySelector('#movie-rating');
-var iconNetflixEl = document.querySelector('#icon-netflix');
-var iconHuluEl = document.querySelector('#icon-hulu');
-var iconPrimeEl = document.querySelector('#icon-prime');
-var iconHBOEl = document.querySelector('#icon-HBO');
 
 var flexContainerEl = document.querySelector(".flex-container");
 
 var movie = '';
-
-
 
 var streamingService = '';
 
@@ -139,44 +128,6 @@ function getMotNAPI() {
         })
 }
 
-// mainScreen.style.display = 'block';
-
-// if (streamingService === 'hulu') {
-
-// } else if (streamingService == 'netflix') {
-
-// } else if (streamingService == 'hbo') {
-
-// } else (streamingService == 'prime') 
-
-// submitEl.addEventListener('click', function(event){
-//     event.preventDefault();
-
-//     movie = $('#movie').val().trim()
-//     console.log(movie) 
-
-//     getTmdbAPI(movie);
-//     getMotNAPI(movie);
-//     // move this -> getCocktailDB();
-// })
-
-// function getTmdbAPI(movie){
-//     var apiKey = 'b17d58183a19638723e4cef78264f6c2';
-//     var tmdbQueryUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=b17d58183a19638723e4cef78264f6c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=27';
-
-//     fetch(tmdbQueryUrl)
-//     .then(function (response){
-//         return response.json();
-//     })
-//     .then(function (movieData){
-//         console.log(movieData);
-//     })
-// }
-
-/*populate movie variables with api data
- 
-*/
-// }
 
 // Cocktail API
 function generateGetSmashedBtn(movieEl){
@@ -245,8 +196,6 @@ function getCocktailDB(movieEl) {
            
 
         })
-
-
 
     }
 
