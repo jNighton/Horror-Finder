@@ -55,7 +55,7 @@ header {
     font-size: medium;
     background-color: rgba(0,0,0,.6);
     color: white;
-
+    min-height: 250px;
     flex-basis: 1400px;
     flex-grow: 0;
     margin: 20px 40px 0px 40px;
