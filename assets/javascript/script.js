@@ -150,6 +150,7 @@ function generateGetSmashedBtn(movieEl) {
 
     var smashedBtnEl = document.createElement('button');
     smashedBtnEl.setAttribute('id', 'get-smashed-button');
+    smashedBtnEl.setAttribute('class', 'waves-effect waves-light');
     smashedBtnEl.textContent = 'Get Smashed?';
 
     movieEl.appendChild(smashedContainerEl);
