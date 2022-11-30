@@ -24,6 +24,7 @@ header {
 .movie-section{
     display: flex;
     justify-content: center;
+    min-height: 250px;
 }
 
 .service-btn{
